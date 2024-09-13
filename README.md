@@ -1,6 +1,6 @@
 # AIRAL
 
-**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "*__A__coustic __I__nsights into the __R__oot-__A__ffix asymmetry across __L__anguages*" is an ongoing **research project** by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
+**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across****L****anguages*" is an ongoing **research project** by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
 
 ## Aim of this Repository
 
