@@ -1,6 +1,6 @@
 # AIRAL
 
-**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across****L****anguages*" is an ongoing **research project** by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
+**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
 
 ## Aim of this Repository
 
@@ -12,7 +12,7 @@ Please note that the quality and readability of the scripts vary significantly. 
 
 ## Scripts
 
-The scripts are divided into **four** different subdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in [ELAN](https://archive.mpi.nl/tla/elan). The scripts utilize the **[Corflow](https://github.com/DoReCo/corflow)** tool/python library (more information on that down below). The four subdirectories are:
+The scripts are divided into **four** subdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in [ELAN](https://archive.mpi.nl/tla/elan). The scripts utilize the **[Corflow](https://github.com/DoReCo/corflow)** tool/python library (more information on that down below). The four subdirectories are:
 
 1. **doreco_lang_scripts**: Scripts written to manipulate and clean the data of *specific* languages from the DoReCo corpus. Some examples:
     - collect and resolve **misalignments** between segments (units) from multiple, different tiers
@@ -58,7 +58,7 @@ The language specific scripts were written to manipulate data from the DoReCo co
 
 If you have questions, want to make comments, note issues or if you need help with scripts or functions, feel free to contact [Aleksandr Schamberger](mailto:mail@aleksandrschamberger.de).
 
-## Maintainer and Authors
+## Maintainers and Authors
 
 This repository is created and maintained by [Aleksandr Schamberger](https://github.com/a-leks-icon/).
 
