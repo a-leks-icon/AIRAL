@@ -20,11 +20,11 @@ The scripts are divided into **four** subdirectories. Most of them manipulate la
 2. **general_scripts**: Scripts written to manipulate the data of *multiple, different* languages or to extract information from the data. Some examples:
     - **import** translations as tiers with time-aligned segments
     - collect **duplicated, overlapping** or **misaligned** segments
-3. **debug_scripts**: Script mainly written to review datasets and files before finalizing and publishing them. Some examples:
+3. **debug_scripts**: Scripts mainly written to review datasets and files before finalizing and publishing them. Some examples:
     - check, whether the structure of an .eaf (.xml)-file is **well-formed**
     - check, whether (hierarchical) **relations** between objects (segments, tiers, etc.) specific to .eaf-files **hold**
-4. **airal_scripts**: A few scripts written for tasks within the AIRAL project other than manipulating datasets from to DoReCo corpus intended to be published later on. Some examples:
-    - import a .csv-file containing language data and **create** a .txt-file with **useful statistical data**, e.g. token frequencies of individual glosses, morphs and pos tags, or tuples of them.
+4. **airal_scripts**: A few scripts written for tasks within the AIRAL project other than manipulating datasets from the DoReCo corpus. Some examples:
+    - import a .csv-file containing linguistic information of a dataset and **create** a .txt-file with **useful statistical data**, e.g. token frequencies of glosses, morphs and part-of-speech tags
 
 ## Corflow
 
@@ -38,7 +38,7 @@ Most scripts (those in the subdirectories 1.-3.) utilize the **[Corflow](https:/
 
 ## DoReCo Languages
 
-The language specific scripts were written to manipulate data from the DoReCo corpus for the following languages:
+Languages, for which specific scripts were written, are the following:
 
 * Arapaho
 * Bora
