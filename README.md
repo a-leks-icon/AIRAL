@@ -8,7 +8,7 @@ This **repository** contains the python scripts written for and used in the rese
 
 While most scripts are well documented in the project's internal documentation, they are currently not well documented in the files themselves. A first objective is to provide the scripts and functions with sufficient information and comments.
 
-Please note that the quality and readability of the scripts vary significantly. This is because I (Aleks) developed and improved my programming skills during the time I was writing the scripts. Because I want to preserve their functionality, it is very likely that it will stay this way.
+Please note that the quality and readability of the scripts vary significantly. This is because we developed and improved our programming skills during the time we were writing the scripts. To guarantee the functionality of the scripts, it is very likely that it will stay this way.
 
 ## Scripts
 
@@ -62,4 +62,4 @@ If you have questions, want to make comments, note issues or if you need help wi
 
 This repository is created and maintained by [Aleksandr Schamberger](https://github.com/a-leks-icon/).
 
-Scripts were written by Michelle Elizabeth Throssell Balagué and Aleksandr Schamberger.
+Scripts were written by [Michelle Elizabeth Throssell Balagué](https://github.com/michellethr) and Aleksandr Schamberger.
