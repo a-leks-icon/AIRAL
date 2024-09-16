@@ -2,13 +2,13 @@
 
 **[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
 
-## Aim of this Repository
+## Aims of this Repository
 
 This **repository** contains the python scripts written for and used in the research project **AIRAL**. The aim of this repository is to collect, document and maintain the scripts written for the project and for the various datasets of the DoReCo corpus. Another aim is to provide users (researchers) with useful scripts, which they can either apply directly to their datasets or use them as templates for writing their own scripts.
 
 While most scripts are well documented in the project's internal documentation, they are currently not well documented in the files themselves. A first objective is to provide the scripts and functions with sufficient information and comments.
 
-Please note that the quality and readability of the scripts vary significantly. This is because we developed and improved our programming skills during the time we were writing the scripts. To guarantee the functionality of the scripts, it is very likely that it will stay this way.
+Please note that the quality and readability of the scripts vary significantly. This is because we developed and improved our programming skills during the time we were writing the scripts. To guarantee the functionality of the scripts, most of them won't be changed fundamentally.
 
 ## Scripts
 
@@ -60,6 +60,6 @@ If you have questions, want to make comments, note issues or if you need help wi
 
 ## Maintainers and Authors
 
-This repository is created and maintained by [Aleksandr Schamberger](https://github.com/a-leks-icon/).
+This repository was created and is maintained by [Aleksandr Schamberger](https://github.com/a-leks-icon/).
 
 Scripts were written by [Michelle Elizabeth Throssell Balagué](https://github.com/michellethr) and Aleksandr Schamberger.
