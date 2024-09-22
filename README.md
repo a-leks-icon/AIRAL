@@ -1,6 +1,8 @@
 # AIRAL
 
-**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.huma-num.fr) corpus.
+**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*).
+
+AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.huma-num.fr) corpus to test if and how the internal structure of words leaves acoustic traces, in particular with regards to the distinction between roots and affixes.
 
 ## Aim and Structure of this Repository
 
@@ -10,9 +12,9 @@ The main aim of this repository is to provide users (researchers) with useful py
 
 **Corflow** is a tool (python library) to *manipulate* files or *change* a file's format, mainly applying to files used in the context of **corpus linguistics** and **multi-layered annotated corpora**. The tool was created by François Delafontaine as part of the [DoReCo](https://doreco.huma-num.fr) project. Currently, the following file formats are supported:
 
-* ELAN: .eaf
-* Praat: .textgrid
-* Pangloss: .xml
+* [ELAN](https://archive.mpi.nl/tla/elan): .eaf
+* [Praat](https://www.fon.hum.uva.nl/praat/): .textgrid
+* [Pangloss](https://github.com/CNRS-LACITO/Pangloss_website): .xml
 
 The scripts are located in the **[corflow_scripts](./corflow_scripts/)** subdirectory.
 
@@ -56,7 +58,7 @@ Languages, for which specific AIRAL scripts were written, are the following:
 
 ## Objectives
 
-- [] Extract useful functions and scripts from the archived scripts written for the **AIRAL** project.
+- [ ] Extract useful functions and scripts from the archived scripts written for the **AIRAL** project.
 
 <!--Corflow is still in development. While there are currently no UI nor any detailed error messages available, the tool already enables users to manipulate corpus data in an easy, customizable and reliable way. Future releases will (hopefully) for example enable the user to work with data created within [ANNIS](https://corpus-tools.org/annis/).-->
 
