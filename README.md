@@ -22,21 +22,19 @@ The scripts are located in the **[corflow_scripts](./corflow_scripts/)** subdire
 
 A secondary aim of this repository is to document and maintain the python scripts written for the **AIRAL** project manipulating and cleaning various datasets of the DoReCo corpus.
 
-The archived scripts written for the **AIRAL** project in the directory **airal_archive/** are divided into **four** subdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in [ELAN](https://archive.mpi.nl/tla/elan). The four subdirectories are:
+The archived scripts written for the **AIRAL** project located in the **[airal_archive](./airal_archive/)** subdirectory are divided into subsubdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in ELAN. The four subdirectories are:
 
-1. **doreco_lang_scripts**: Scripts written to manipulate and clean the data of *specific* languages from the DoReCo corpus. Some examples:
+1. **[doreco_lang_scripts](./airal_archive/doreco_lang_scripts/)**: Scripts written to manipulate and clean the data of *specific* languages from the DoReCo corpus. Some examples:
     - collect and resolve **misalignments** between segments (units) from multiple, different tiers
     - manipulate segments (**merge, split, move** them, **define** their content) depending on their **content, time, relation** and/or **position**
-2. **general_scripts**: Scripts written to manipulate the data of *multiple, different* languages or to extract information from the data. Some examples:
+2. **[general_scripts](./airal_archive/general_scripts/)**: Scripts written to manipulate the data of *multiple, different* languages or to extract information from the data. Some examples:
     - **import** translations as tiers with time-aligned segments
     - collect **duplicated, overlapping** or **misaligned** segments
-3. **debug_scripts**: Scripts mainly written to review datasets and files before finalizing and publishing them. Some examples:
+3. **[debug_scripts](./airal_archive/debug_scripts/)**: Scripts mainly written to review datasets and files before finalizing and publishing them. Some examples:
     - check, whether the structure of an .eaf (.xml)-file is **well-formed**
     - check, whether (hierarchical) **relations** between objects (segments, tiers, etc.) specific to .eaf-files **hold**
-4. **airal_scripts**: A few scripts written for tasks within the AIRAL project other than manipulating datasets from the DoReCo corpus. Some examples:
+4. **[airal_scripts](./airal_archive/airal_scripts/)**: A few scripts written for tasks within the AIRAL project other than manipulating datasets from the DoReCo corpus. Some examples:
     - import a .csv-file containing linguistic information of a dataset and **create** a .txt-file with **useful statistical data**, e.g. token frequencies of glosses, morphs and part-of-speech tags
-
-The scripts are located in the **[airal_archive](./airal_archive/)** subdirectory.
 
 #### DoReCo Languages
 
