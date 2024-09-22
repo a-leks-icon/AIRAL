@@ -5,9 +5,9 @@ brainstorming
 data
 old_scripts
 pypi_github
-scripts/test.py
-scripts/tast.py
-scripts/__pycache__
-scripts/forge_scripts
-scripts/other_scripts
-scripts/corflow_functions_v2.py
+airal_archive/test.py
+airal_archive/tast.py
+airal_archive/__pycache__
+airal_archive/forge_scripts
+airal_archive/other_scripts
+airal_archive/corflow_functions_v2.py

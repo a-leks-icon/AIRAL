@@ -1,18 +1,26 @@
 # AIRAL
 
-**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.info/) corpus created at ZAS between 2019 and 2022.
+**[AIRAL](https://www.leibniz-zas.de/en/research/research-areas/laboratory-phonology/airal)** "***A****coustic* ***I****nsights into the* ***R****oot-****A****ffix asymmetry across* ***L****anguages*" is an ongoing research project by [Ludger Paschen](http://www.ludgerpaschen.de/) at [ZAS](https://www.leibniz-zas.de/en/) Berlin (*Leibniz-Zentrum Allgemeine Sprachwissenschaft*) funded by the German Research Foundation [DFG](https://www.dfg.de/en) (*Deutsche Forschungsgemeinschaft*). AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.huma-num.fr) corpus.
 
-## Aims of this Repository
+## Aim and Structure of this Repository
 
-This **repository** contains the python scripts written for and used in the research project **AIRAL**. The aim of this repository is to collect, document and maintain the scripts written for the project and for the various datasets of the DoReCo corpus. Another aim is to provide users (researchers) with useful scripts, which they can either apply directly to their datasets or use them as templates for writing their own scripts.
+### Corflow Scripts
 
-While most scripts are well documented in the project's internal documentation, they are currently not well documented in the files themselves. A first objective is to provide the scripts and functions with sufficient information and comments.
+The main aim of this repository is to provide users (researchers) with useful python scripts and functions extracted from those scripts written for the **ARIAL** project utilizing the **[Corflow](https://github.com/DoReCo/corflow)** tool. Users can use these scripts for their own projects applying them directly to their own datasets or use them as templates for writing their own scripts.
 
-Please note that the quality and readability of the scripts vary significantly. This is because we developed and improved our programming skills during the time we were writing the scripts. To guarantee the functionality of the scripts, most of them won't be changed fundamentally.
+**Corflow** is a tool (python library) to *manipulate* files or *change* a file's format, mainly applying to files used in the context of **corpus linguistics** and **multi-layered annotated corpora**. The tool was created by François Delafontaine as part of the [DoReCo](https://doreco.huma-num.fr) project. Currently, the following file formats are supported:
 
-## Scripts
+* ELAN: .eaf
+* Praat: .textgrid
+* Pangloss: .xml
 
-The scripts are divided into **four** subdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in [ELAN](https://archive.mpi.nl/tla/elan). The scripts utilize the **[Corflow](https://github.com/DoReCo/corflow)** tool/python library (more information on that down below). The four subdirectories are:
+The scripts are located in the **[corflow_scripts](./corflow_scripts/)** subdirectory.
+
+### AIRAL Scripts
+
+A secondary aim of this repository is to document and maintain the python scripts written for the **AIRAL** project manipulating and cleaning various datasets of the DoReCo corpus.
+
+The archived scripts written for the **AIRAL** project in the directory **airal_archive/** are divided into **four** subdirectories. Most of them manipulate language datasets from the DoReCo corpus published in the [DoReCo database](https://doreco.huma-num.fr/). The manipulated data consists of **.eaf**-files used in [ELAN](https://archive.mpi.nl/tla/elan). The four subdirectories are:
 
 1. **doreco_lang_scripts**: Scripts written to manipulate and clean the data of *specific* languages from the DoReCo corpus. Some examples:
     - collect and resolve **misalignments** between segments (units) from multiple, different tiers
@@ -26,33 +34,31 @@ The scripts are divided into **four** subdirectories. Most of them manipulate la
 4. **airal_scripts**: A few scripts written for tasks within the AIRAL project other than manipulating datasets from the DoReCo corpus. Some examples:
     - import a .csv-file containing linguistic information of a dataset and **create** a .txt-file with **useful statistical data**, e.g. token frequencies of glosses, morphs and part-of-speech tags
 
-## Corflow
+The scripts are located in the **[airal_archive](./airal_archive/)** subdirectory.
 
-Most scripts (those in the subdirectories 1.-3.) utilize the **[Corflow](https://github.com/DoReCo/corflow)** python library. Corflow is a tool to *manipulate* files and/or *change* a file's format, mainly applying to files used in the context of corpus linguistics. The tool was created by François Delafontaine as part of the [DoReCo](https://doreco.info/) project. Currently, the following file formats are supported:
+#### DoReCo Languages
 
-* ELAN: .eaf
-* Praat: .textgrid
-* Pangloss: .xml
-
- Corflow is still in development. While there are currently no UI nor any detailed error messages available, the tool already enables users to manipulate corpus data in an easy, customizable and reliable way. Future releases will (hopefully) for example enable the user to work with data created within [ANNIS](https://corpus-tools.org/annis/).
-
-## DoReCo Languages
-
-Languages, for which specific scripts were written, are the following:
+Languages, for which specific AIRAL scripts were written, are the following:
 
 * Arapaho
 * Bora
 * Daakie
 * English (Southern England)
-* Gubeeher
+* Baïnounk Gubëeher
 * Komnzo
-* Nafsan
+* Nafsan (South Efate)
 * Texistepec Popoluca
 * Savosavo
 * Sümi
 * Teop
 * Urum
-* Yongningna
+* Yongning Na
+
+## Objectives
+
+- [] Extract useful functions and scripts from the archived scripts written for the **AIRAL** project.
+
+<!--Corflow is still in development. While there are currently no UI nor any detailed error messages available, the tool already enables users to manipulate corpus data in an easy, customizable and reliable way. Future releases will (hopefully) for example enable the user to work with data created within [ANNIS](https://corpus-tools.org/annis/).-->
 
 ## Contact
 
