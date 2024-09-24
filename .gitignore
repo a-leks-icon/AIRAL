@@ -12,3 +12,7 @@ airal_archive/forge_scripts
 airal_archive/other_scripts
 airal_archive/corflow_functions_v2.py
 my-venv
+corflow_scripts/test.py
+corflow_scripts/__pycache__
+corflow_scripts/info.md
+corflow_scripts/get_and_define_segments_content.py
