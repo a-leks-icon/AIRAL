@@ -20,12 +20,13 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
 
     def get_relation(relations,rel_str):
         '''Returns the first relation found given a string.'''
-        relation = None
-        for rel in relations:
-            if re.search(rel,rel_str):
-                relation = rel
-                break
-        return relation
+        tokenizer = r"[a-zA-Z]+-?[a-zA-Z]+|[a-zA-Z]+"
+        tokens = re.findall(tokenizer,rel_str)
+        if tokens:
+            for rel in relations:
+                if all(tok in rel for tok in tokens):
+                    return rel
+        return None
     
     def sort_segs(segs:set):
         '''Returns a list with sorted segments based on their indeces given a set of segments.'''
@@ -64,7 +65,7 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
             return log
         return None
 
-    relations = ["time.*aligned"]
+    relations = [["time", "aligned"], ["time", "start"], ["time", "end"], ["time", "next", "adjacent"], ["time", "previous", "adjacent"], ["time", "next", "non-adjacent"], ["time", "previous", "non-adjacent"], ["sequence", "next", "adjacent"], ["sequence", "previous", "adjacent"], ["sequence", "next", "non-adjacent"], ["sequence", "previous", "non-adjacent"], ["direct", "child"], ["direct", "parent"], ["distant", "child"], ["distant", "parent"], ["overlap", "next"], ["overlap", "previous"], ["time within"], ["time around"]]
 
     settings = set_options(options)
 
@@ -92,10 +93,15 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
                 elif len(c) == 2:
                     ref_segs = [seg for seg in ref_tier]
                     relation = get_relation(relations,c[1])
+                    #print(f"relation: {relation}")
                     if relation == None:
                         relation = relations[0]
+                        #print(f"c: {c}")
                         if isinstance(c[1],str):
                             ref_segs = [seg for seg in ref_tier if re.search(c[1],seg.content)]
+                            #print(f"ref tier: {ref_tier.name}")
+                            #print(f"collected ref segs: {[seg.content for seg in ref_segs]}")
+                            #print(f"len: {len(ref_segs)}")
                 elif len(c) == 3:
                     ref_segs = [seg for seg in ref_tier]
                     relation = get_relation(relations,c[1])
@@ -131,8 +137,127 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
                         for ref_seg in ref_segs:
                             if (get_seg.start == ref_seg.start) & (get_seg.end == ref_seg.end):
                                 c_collected_segs[n][i].append(get_seg)
-                #next relation
-                pass
+                #time start
+                elif relation == relations[1]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.start == ref_seg.start:
+                                c_collected_segs[n][i].append(get_seg)
+                #time end
+                elif relation == relations[2]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.end == ref_seg.end:
+                                c_collected_segs[n][i].append(get_seg)
+                #time next adjacent
+                elif relation == relations[3]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.start == ref_seg.end:
+                                c_collected_segs[n][i].append(get_seg)
+                #time previous adjacent
+                elif relation == relations[4]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.end == ref_seg.start:
+                                c_collected_segs[n][i].append(get_seg)
+                #time next non-adjacent
+                elif relation == relations[5]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.start > ref_seg.end:
+                                c_collected_segs[n][i].append(get_seg)
+                #time previous non-adjacent
+                elif relation == relations[6]:
+                    for get_seg in get_segs:
+                        for ref_seg in ref_segs:
+                            if get_seg.end < ref_seg.start:
+                                c_collected_segs[n][i].append(get_seg)
+                #sequence next adjacent
+                elif relation == relations[7]:
+                    for get_seg in get_segs:
+                        get_seg_ind = get_seg.index()
+                        for ref_seg in ref_segs:
+                            if get_seg_ind == ref_seg.index()+1:
+                                c_collected_segs[n][i].append(get_seg)
+                #sequence previous adjacent
+                elif relation == relations[8]:
+                    for get_seg in get_segs:
+                        get_seg_ind = get_seg.index()
+                        for ref_seg in ref_segs:
+                            if get_seg_ind == ref_seg.index()-1:
+                                c_collected_segs[n][i].append(get_seg)
+                #sequence next non-adjacent
+                elif relation == relations[9]:
+                    for get_seg in get_segs:
+                        get_seg_ind = get_seg.index()
+                        for ref_seg in ref_segs:
+                            if get_seg_ind > ref_seg.index()+1:
+                                c_collected_segs[n][i].append(get_seg)
+                #sequence previous non-adjacent
+                elif relation == relations[10]:
+                    for get_seg in get_segs:
+                        get_seg_ind = get_seg.index()
+                        for ref_seg in ref_segs:
+                            if get_seg_ind < ref_seg.index()-1:
+                                c_collected_segs[n][i].append(get_seg)
+                #direct child
+                elif relation == relations[11]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if ref_seg.children():
+                                if get_seg in ref_seg.children():
+                                    c_collected_segs[n][i].append(get_seg)
+                #direct parent
+                elif relation == relations[12]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if get_seg == ref_seg.parent():
+                                c_collected_segs[n][i].append(get_seg)
+                #distant child
+                elif relation == relations[13]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            all_ch_segs = ref_seg.allChildren()
+                            if all_ch_segs:
+                                dist_ch_segs = set(all_ch_segs) - set(ref_seg.children())
+                                if get_seg in dist_ch_segs:
+                                    c_collected_segs[n][i].append(get_seg)
+                #distant parent
+                elif relation == relations[14]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            par = ref_seg.parent()
+                            pars = ref_seg.parents()
+                            if par in pars:
+                                ind = pars.index(par)
+                                pars.pop(ind)
+                            if get_seg in pars:
+                                c_collected_segs[n][i].append(get_seg)
+                #overlap next
+                elif relation == relations[15]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if (get_seg.end > ref_seg.start) & (get_seg.end < ref_seg.end):
+                                c_collected_segs[n][i].append(get_seg)
+                #overlap previous
+                elif relation == relations[16]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if (get_seg.start < ref_seg.end) & (get_seg.end > ref_seg.end):
+                                c_collected_segs[n][i].append(get_seg)
+                #within
+                elif relation == relations[17]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if (get_seg.start > ref_seg.start) & (get_seg.end < ref_seg.end):
+                                c_collected_segs[n][i].append(get_seg)
+                #around
+                elif relation == relations[18]:
+                    for get_seg in get_tier:
+                        for ref_seg in ref_tier:
+                            if (get_seg.start < ref_seg.start) & (get_seg.end > ref_seg.end):
+                                c_collected_segs[n][i].append(get_seg)
 
                 c_collected_segs[n][i] = set(c_collected_segs[n][i])
 
@@ -175,7 +300,23 @@ def relations(show:bool=True):
     '''
 
     relations = {
-        "time-aligned": "A segment to be collected has to have the exact same start end end time as the referenced segment."
+        "time aligned": "A segment to be collected has to have the exact same start end end time as the referenced segment.",
+        "time start": "A segment to be collected has to have the exact same start time as the referenced segment.",
+        "time end": "A segment to be collected has to have the exact same end time as the referenced segment.",
+        "time next adjacent": "The start time of a segment to be collected has to equal the end time of the referenced segment.",
+        "time previous adjacent": "The end time of a segment to be collected has to equal the start time of the referenced segment.",
+        #"start time overlap": "",
+        #"end time overlap": "The end time of a segment to be collected is greater than the start time of a referenced segment",
+        "times inside": "The start and end time of a segment to be collected are within the start and end time of a referenced segment.",
+        "times outside": "The start and end time of a segment to be collected are outside the start and end time of a referenced segment.",
+        "next": "",
+        "previous": "",
+        "distant next": "",
+        "distant previous": "",
+        "direct child": "",
+        "direct parent": "",
+        "distant child": "",
+        "distant parent": ""
     }
     if show:
         return print(relations)
