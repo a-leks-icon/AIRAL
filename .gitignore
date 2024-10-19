@@ -14,5 +14,6 @@ airal_archive/corflow_functions_v2.py
 my-venv
 corflow_scripts/test.py
 corflow_scripts/__pycache__
-corflow_scripts/info.md
 corflow_scripts/get_and_define_segments_content.py
+corflow_scripts/notes.md
+UUM-TXT-AN-00000-A01.pfsx
