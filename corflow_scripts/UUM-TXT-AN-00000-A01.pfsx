@@ -23,7 +23,7 @@
         <String>ref@unknown</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>28000</Long>
+        <Long>8950</Long>
     </pref>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
@@ -82,7 +82,7 @@
         <Float>500.0</Float>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>22020</Long>
+        <Long>4150</Long>
     </pref>
     <prefGroup key="BAS - WebMAUS Basic">
         <pref key="LANGUAGE">
@@ -103,10 +103,10 @@
         </pref>
     </prefGroup>
     <pref key="TimeScaleBeginTime">
-        <Long>23714</Long>
+        <Long>4118</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>25259</Long>
+        <Long>4150</Long>
     </pref>
     <prefGroup key="TierColors">
         <pref key="ref@unknown_2">
