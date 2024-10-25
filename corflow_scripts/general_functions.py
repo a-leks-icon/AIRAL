@@ -317,12 +317,3 @@ def relations(show:bool=True):
         return print(relations)
     else:
         return relations
-
-def copy_tier():
-    '''Copies an existing tier to a transcription.
-
-
-
-    '''
-
-    
