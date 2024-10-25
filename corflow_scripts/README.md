@@ -1,10 +1,16 @@
 # Corflow Scripts
 
-All functions specifically build for the scripts in this directory are in `corflow_functions.py`.
+Python functions build on top of the **[Corflow](https://github.com/DoReCo/corflow)** tool complementing it when working with .eaf (ELAN) files.
 
-# Useful scripts 
+All functions specifically build for the scripts in this directory are located in `general_functions.py`.
 
-Here are short scripts that illustrate some of the base functionalities of corflow, and provide minimal working examples for common tasks related to processing and manipulating ELAN .eaf files. These scripts are fullly commented and guide the user through each processing step.
+## Getting Started
+
+Take a look at the [tutorials](./tutorials/) to start using Corflow and the additional scripts and functions provided there.
+
+## Useful scripts 
+
+Here are short scripts that illustrate some base functionalities of Corflow, and provide minimal working examples for common tasks related to processing and manipulating ELAN .eaf files. These scripts are fully commented and guide the user through each processing step.
 
 1. Load and save files: How to open and save 
 2. Copy tiers: How to create copies of tiers as either stand-alone tiers or as daughter tiers
@@ -12,7 +18,7 @@ Here are short scripts that illustrate some of the base functionalities of corfl
 4. Delete and create segments: How to delete and create annotation units based on a set of conditions
 5. ...
 
-# Sanity checks
+## Sanity checks
 
 With the function XXX provided by YYY.py, you can easily check one or multiple .eaf files for common issues that may 
 The script checks for 
