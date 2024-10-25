@@ -4,13 +4,18 @@
 
 AIRAL investigates the acoustic properties of complex words in a diverse sample of the world's mostly **small and endangered** languages. AIRAL analyzes annotated datasets from the [DoReCo](https://doreco.huma-num.fr) corpus to test if and how the internal structure of words leaves acoustic traces, in particular with regard to the distinction between roots and affixes.
 
+## Quick Info
+
+- [Corflow Scripts](./corflow_scripts/): Scripts and functions written in Python augmenting the [Corflow](https://github.com/DoReCo/corflow) tool working with linguistic datasets e.g. .eaf ([ELAN](https://archive.mpi.nl/tla/elan)) files (located in the [corflow_scripts](./corflow_scripts/) subdirectory).
+- [AIRAL Scripts](./airal_archive/): Scripts and functions written in Python for the AIRAL project manipulating datasets of the DoReCo corpus (located in the [airal_archive](./airal_archive/) subdirectory).
+
+To **get started** with Corflow or AIRAL scripts, visit the [first tutorial](./corflow_scripts/tutorials/00_getting_started/).
+
 ## Aim and Structure of this Repository
 
 ### Corflow Scripts
 
-The main aim of this repository is to provide users (researchers) with useful Python scripts and functions extracted from those scripts written for the **ARIAL** project utilizing the **[Corflow](https://github.com/DoReCo/corflow)** tool. Users can use these scripts for their own projects applying them directly to their own datasets or use them as templates for writing their own scripts.
-
-The scripts are located in the **[corflow_scripts](./corflow_scripts/)** subdirectory.
+The main aim of this repository is to provide users (researchers) with useful Python scripts and functions located in the **[corflow_scripts](./corflow_scripts/)** subdirectory extracted from those scripts written for the **ARIAL** project utilizing the [Corflow](https://github.com/DoReCo/corflow) tool. Users can use these scripts for their own projects applying them directly to their own datasets or use them as templates for writing their own scripts.
 
 **Corflow** is a tool (Python library) to *manipulate* files or *change* a file's format, mainly applying to files used in the context of **corpus linguistics** and **multi-layered annotated corpora**. The tool was created by François Delafontaine as part of the [DoReCo](https://doreco.huma-num.fr) project. Currently, the following file formats are supported:
 
