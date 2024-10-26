@@ -36,11 +36,11 @@ The following edited screenshot taken of the file `doreco_urum1249_UUM-TXT-AN-00
 
 ![Screenshot of the file 'doreco_urum1249_UUM-TXT-AN-00000-A03.eaf' with added rectangles displaying Corflow classes and objects 'Transcription', 'Tier' and 'Segment'.](corflow_classes_elan_example_02.png)
 
-Importing a file using Corflow creates a `Transcription` object. A `Transcription` object contains (multiple) `Tier` objects and a `Tier` object contains (multiple) `Segment` objects. `Transcriptions`, `Tiers` and `Segments` relate (1) linearly and (2) hierarchically to each other as well as share a number of attributes and methods (as they all belong to the root class `Conteneur`). In what follows, I illustrate common attributes and methods used in Corflow.
+Importing a file using Corflow creates a `Transcription` object. A `Transcription` object contains (multiple) `Tier` objects and a `Tier` object contains (multiple) `Segment` objects. `Transcriptions`, `Tiers` and `Segments` relate (1) linearly and (2) hierarchically to each other as well as share a number of attributes and methods (as they all belong to the root class `Conteneur`. In what follows, I illustrate common attributes and methods used in Corflow.
 
 ## Help
 
-To get information about an Objects attributes and methods call the `help` function with the respective Object as its argument or read the [Corflow GitHub Wiki](https://github.com/DoReCo/corflow/wiki).
+To get information about an object's attributes and methods call the `help` function with the respective object as an argument or read the [Corflow GitHub Wiki](https://github.com/DoReCo/corflow/wiki).
 
 ```python
 #Import the respective class.
@@ -85,14 +85,16 @@ The `.elem` attribute is a list containing all objects belonging to an object. T
 from corflow import fromElan
 file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
+#Get the first tier.
 tier = trans.elem[0]
+#Get the first segment of the first tier.
 seg = tier.elem[0]
 print(f"transcription: {trans.name}")
 print(f"first tier: {tier.name}")
 print(f"first segment: {seg.content}")
 ```
 
-This should print:
+Output:
 
 ```console
 transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
@@ -108,13 +110,15 @@ The methods `.findName` and `.findAllName` return one or all objects, whose `.na
 from corflow import fromElan
 file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
+#Get the word tier.
 wd_tier = trans.findName("wd@A03")
+#Get the morph and the gloss tier.
 mb_gl_tiers = trans.findAllName("(mb|gl)@")
 print(f"word tier: {wd_tier.name}")
 print(f"morph and gloss tier:\n{[tier.name for tier in mb_gl_tiers]}")
 ```
 
-This should print:
+Output:
 
 ```console
 word tier: wd@A03
@@ -122,7 +126,7 @@ morph and gloss tier:
 ['mb@A03', 'gl@A03']
 ```
 
-To access `Segments` based on their `.content` attribute, you can use the `get_segs` function from the [general_functions](../../general_functions.py) script (more on that in the [third tutorial]()).
+To access a `Segment` object based on their `.content` attribute, you can use the `get_segs` function from the [general_functions](../../general_functions.py) script (more on that in the [third tutorial]()).
 
 ### Name and Content
 
@@ -140,7 +144,7 @@ print(f"segment name: {seg.name}")
 print(f"segment content: {seg.content}")
 ```
 
-This should print:
+Output:
 
 ```console
 transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
@@ -151,7 +155,7 @@ segment content: 0001_DoReCo_doreco_urum1249_UUM-TXT-AN-00000-A03
 
 ### Time
 
-`.start` and `.end` contain an object's start and end time respectively:
+`.start` and `.end` contain an object's start and end time respectively (in seconds):
 
 ```python
 from corflow import fromElan
@@ -164,7 +168,7 @@ print(f"tier: {tier.start} -- {tier.end}")
 print(f"segment: {seg.start} -- {seg.end}")
 ```
 
-This should print:
+Output:
 
 ```console
 transcription: 0.0 -- 105.326
@@ -184,17 +188,17 @@ tier = trans.elem[0]
 seg = tier.elem[0]
 print(f"transcription: {trans.name}")
 print(f"tier: {tier.name}")
-print(f"structure of tier: {tier.struct.name}")
-print(f"structure of segment: {seg.struct.name}")
+print(f"structure of the first tier: {tier.struct.name}")
+print(f"structure of the first segment: {seg.struct.name}")
 ```
 
-This should print:
+Output:
 
 ```console
 transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
 tier: ref@A03
-structure of tier: doreco_urum1249_UUM-TXT-AN-00000-A03
-structure of segment: ref@A03
+structure of the first tier: doreco_urum1249_UUM-TXT-AN-00000-A03
+structure of the first segment: ref@A03
 ```
 
 ### Index
@@ -206,12 +210,13 @@ from corflow import fromElan
 file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
 pos_tier = trans.findName("ps@A03")
+#Get the object's index.
 ind = pos_tier.index()
 print(f"Index of tier /{pos_tier.name}/: {ind}")
 print(f"Name of the tier with index {ind}: {trans.elem[ind].name}")
 ```
 
-This should print:
+Output:
 
 ```console
 Index of tier /ps@A03/: 6
@@ -234,7 +239,7 @@ wd_tier.pop(0)
 print(f"After removing the next word: {[seg.content for seg in wd_tier.elem[:2]]}")
 ```
 
-This should print:
+Output:
 
 ```console
 First four words: ['birınji', 'gäldılär', '<p:>', 'bizım']
@@ -244,21 +249,23 @@ After removing the next word: ['<p:>', 'bizım']
 
 ### Parents and Children
 
-`.parent()` returns an object's direct parent object or None, if no such exists. It can be used recursively. `.parents()` returns a list containing direct and indirect parents an object has:
+`.parent()` returns an object's direct parent object or None, if none exists. It can be used recursively. `.parents()` returns a list containing all (direct and indirect) parents an object has:
 
 ```python
 from corflow import fromElan
 file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
 pos_tier = trans.findName("ps@A03")
+#Get the parent tier of pos tier.
 parent_tier = pos_tier.parent()
 print(f"direct parent tier of /pos tier/: {parent_tier.name}")
 print(f"grandparent tier of /pos tier/: {parent_tier.parent().name}")
+#Get all parent tiers of pos tier.
 parent_tiers = pos_tier.parents()
 print(f"all parent tiers of /pos tier/: {[par.name for par in parent_tiers]}")
 ```
 
-This should print:
+Output:
 
 ```console
 direct parent tier of /pos tier/: mb@A03
@@ -266,22 +273,24 @@ grandparent tier of /pos tier/: wd@A03
 all parent tiers of /pos tier/: ['ref@A03', 'wd@A03', 'mb@A03']
 ```
 
-`.children()` returns a list containing each direct child element an object has. `.allChildren()` returns a list containing direct and indirect child elements:
+`.children()` returns a list containing each direct child object of an object. `.allChildren()` returns a list containing all (direct and indirect) child objects:
 
 ```python
 from corflow import fromElan
 file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
 ref_tier = trans.findName("ref@A03")
+#Get only the direct child tiers of ref tier.
 direct_child_tiers = ref_tier.children()
 print(f"direct child tiers of /reference tier/:")
 print([tier.name for tier in direct_child_tiers])
+#Get all child tiers of ref tier.
 all_child_tiers = ref_tier.allChildren()
 print(f"all child tiers of /reference tier/")
 print([tier.name for tier in all_child_tiers])
 ```
 
-This should print:
+Output:
 
 ```console
 direct child tiers of /reference tier/:
@@ -290,7 +299,7 @@ all child tiers of /reference tier/
 ['ft@A03', 'tx@A03', 'wd@A03', 'mb@A03', 'gl@A03', 'ps@A03', 'ph@A03', 'doreco-mb-algn@A03', 'ge-a@unknown']
 ```
 
-Both methods collect child elements regardless to which structure they belong to:
+Both methods collect child objects regardless to which structure they belong to:
 
 ```python
 from corflow import fromElan
@@ -303,7 +312,7 @@ print(f"child segments of /{mb_seg.content}/")
 print([seg.content for seg in children])
 ```
 
-This should print:
+Output:
 
 ```console
 child segments of /birınji/
@@ -324,7 +333,7 @@ for tier,segs in children.items():
     print([seg.content for seg in segs])
 ```
 
-This should print:
+Output:
 
 ```console
 child segments belonging to child tier: gl@A03
