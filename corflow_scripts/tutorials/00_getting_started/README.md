@@ -1,5 +1,7 @@
 # Getting Started
 
+This tutorial explains step by step how to set up and install Python, Pip, Venv and finally Corflow.
+
 ## Prerequisites
 
 ### Install Python
@@ -28,7 +30,7 @@ If you use Windows, macOS, another Linux distribution or if you have problems in
 
 You may want to use an IDE (integrated development environment) like [Visual Studio Code](https://code.visualstudio.com/) when working on your scripts.
 
-### Install pip
+### Install Pip
 
 Depending on the method you used to install Python, you may or may not have to install Python's package manager _pip_. On Linux, check, whether pip is installed or not:
 
@@ -44,7 +46,7 @@ sudo apt install python3-pip
 
 If you use another OS or if you encounter problems installing pip, check out the [official documentation](https://pip.pypa.io/en/stable/installation/). The above steps are based on [this Guide](https://packaging.python.org/en/latest/guides/installing-using-linux-tools/#installing-pip-setuptools-wheel-with-linux-package-managers).
 
-### Install venv
+### Install Venv
 
 Install the _venv_ module to create virtual environments:
 
