@@ -6,7 +6,13 @@ All functions specifically build for the scripts in this directory are located i
 
 ## Getting Started
 
-Take a look at the [tutorials](./tutorials/) to start using Corflow and the additional scripts and functions provided there.
+To use the scripts and functions in this repository, install Corflow: Navigate to your virtual environment, open your terminal and enter the following command:
+
+```shell
+pip install corflow
+```
+
+To learn **how to use** Corflow and the additional scripts and functions, take a look at the [tutorials](./tutorials/).
 
 ## Useful scripts 
 
