@@ -11,4 +11,4 @@ While not mandatory, it is recommended to **start with the first two tutorials**
 * [First tutorial](./00_getting_started/): Setup Python and Corflow
 * [Second tutorial](./01_corflow_basics/): Corflow Basics
 
-The remaining tutorials can be done in any order.
+The rest of the tutorials can be done in any order.

@@ -6,10 +6,12 @@ AIRAL investigates the acoustic properties of complex words in a diverse sample 
 
 ## Quick Info
 
+The repository consists of two subdirectories:
+
 - [Corflow Scripts](./corflow_scripts/): Scripts and functions written in Python augmenting the [Corflow](https://github.com/DoReCo/corflow) tool working with linguistic datasets e.g. .eaf ([ELAN](https://archive.mpi.nl/tla/elan)) files (located in the [corflow_scripts](./corflow_scripts/) subdirectory).
 - [AIRAL Scripts](./airal_archive/): Scripts and functions written in Python for the AIRAL project manipulating datasets of the DoReCo corpus (located in the [airal_archive](./airal_archive/) subdirectory).
 
-### Getting Started
+## Getting Started
 
 To use the scripts and functions in this repository, install Corflow: Navigate to your virtual environment, open your terminal and enter the following command:
 
