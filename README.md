@@ -13,7 +13,7 @@ The repository consists of two subdirectories:
 
 ## Getting Started
 
-To use the scripts and functions in this repository, install Corflow: Navigate to your virtual environment, open your terminal and enter the following command:
+To use the scripts and functions in this repository, install Corflow: Open your terminal, navigate to your virtual environment and activate it, and enter the following command:
 
 ```shell
 pip install corflow

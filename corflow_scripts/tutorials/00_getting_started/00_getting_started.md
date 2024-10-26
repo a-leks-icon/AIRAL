@@ -51,7 +51,7 @@ Install the _venv_ module to create virtual environments:
 ```shell
 sudo apt install python3-venv
 ```
-Create a new virtual environment in your current directory, e.g. named _my\_venv_':
+Create a new virtual environment in your current directory named _my\_venv_ (you can choose another name or path):
 
 ```shell
 python3 -m venv my-venv
