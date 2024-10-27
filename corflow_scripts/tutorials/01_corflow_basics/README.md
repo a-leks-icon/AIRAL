@@ -233,8 +233,11 @@ file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
 trans = fromElan.fromElan(file)
 wd_tier = trans.findName("wd@A03")
 print(f"First four words: {[seg.content for seg in wd_tier.elem[:4]]}")
-wd_tier.remove(wd_tier.elem[0])
+word = wd_tier.elem[0]
+#Removes a segment (word) using that segment.
+wd_tier.remove(word)
 print(f"After removing the first word: {[seg.content for seg in wd_tier.elem[:3]]}")
+#Removes the first segment (word) from the word tier.
 wd_tier.pop(0)
 print(f"After removing the next word: {[seg.content for seg in wd_tier.elem[:2]]}")
 ```
