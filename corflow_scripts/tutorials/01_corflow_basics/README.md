@@ -87,7 +87,7 @@ file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 #Get the first tier.
 tier = trans.elem[0]
-#Get the first segment of the first tier.
+#Get the second segment of the first tier.
 seg = tier.elem[1]
 print(f"transcription: {trans.name}")
 print(f"first tier: {tier.name}")
