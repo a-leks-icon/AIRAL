@@ -21,7 +21,7 @@ To either import or export a file containing linguistic data, import the module,
 #Import the ELAN corflow modules.
 from corflow import fromElan,toElan
 #Path to the .eaf file.
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 #Importing the .eaf file.
 trans = fromElan.fromElan(file)
 #Exporting the .eaf file.
@@ -32,9 +32,9 @@ Importing for example `toPraat` and using `toPraat.toPraat` instead of `toElan.t
 
 ## Classes and Objects
 
-The following edited screenshot taken of the file `doreco_urum1249_UUM-TXT-AN-00000-A03.eaf` in ELAN illustrates Corflow's model:
+The following edited screenshot taken of the file `doreco_teop1238_Gol_01.eaf` in ELAN illustrates Corflow's model:
 
-![Screenshot of the file 'doreco_urum1249_UUM-TXT-AN-00000-A03.eaf' with added rectangles displaying Corflow classes and objects 'Transcription', 'Tier' and 'Segment'.](corflow_classes_elan_example_02.png)
+![Screenshot of the file 'doreco_teop1238_Gol_01.eaf' with added rectangles displaying Corflow classes and objects 'Transcription', 'Tier' and 'Segment'.](corflow_classes_elan_example_03.png)
 
 Importing a file using Corflow creates a `Transcription` object. A `Transcription` object contains (multiple) `Tier` objects and a `Tier` object contains (multiple) `Segment` objects. `Transcriptions`, `Tiers` and `Segments` relate (1) linearly and (2) hierarchically to each other as well as share a number of attributes and methods (as they all belong to the root class `Conteneur`. In what follows, I illustrate common attributes and methods used in Corflow.
 
@@ -79,27 +79,27 @@ The following table shows which common attributes and methods to use on which ob
 
 ### Accessing Objects by their Index
 
-The `.elem` attribute is a list containing all objects belonging to an object. The following example accesses the first tier and its first segment of the transcription `trans`:
+The `.elem` attribute is a list containing all objects belonging to an object. The following example accesses the first tier and its second segment of the transcription `trans`:
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 #Get the first tier.
 tier = trans.elem[0]
 #Get the first segment of the first tier.
-seg = tier.elem[0]
+seg = tier.elem[1]
 print(f"transcription: {trans.name}")
 print(f"first tier: {tier.name}")
-print(f"first segment: {seg.content}")
+print(f"second segment: {seg.content}")
 ```
 
 Output:
 
 ```console
-transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
-first tier: ref@A03
-first segment: 0001_DoReCo_doreco_urum1249_UUM-TXT-AN-00000-A03
+transcription: doreco_teop1238_Gol_01
+first tier: ref@Gol
+second segment: 0001_DoReCo_doreco_teop1238_Gol_01
 ```
 
 ### Accessing Objects by their Name (regular expression)
@@ -108,10 +108,10 @@ The methods `.findName` and `.findAllName` return one or all objects, whose `.na
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 #Get the word tier.
-wd_tier = trans.findName("wd@A03")
+wd_tier = trans.findName("wd@")
 #Get the morph and the gloss tier.
 mb_gl_tiers = trans.findAllName("(mb|gl)@")
 print(f"word tier: {wd_tier.name}")
@@ -121,9 +121,9 @@ print(f"morph and gloss tier:\n{[tier.name for tier in mb_gl_tiers]}")
 Output:
 
 ```console
-word tier: wd@A03
+word tier: wd@Gol
 morph and gloss tier:
-['mb@A03', 'gl@A03']
+['mb@Gol', 'gl@Gol']
 ```
 
 To access a `Segment` object based on their `.content` attribute, you can use the `get_segs` function from the [general_functions](../../general_functions.py) script (more on that in the [third tutorial]()).
@@ -134,10 +134,10 @@ To access a `Segment` object based on their `.content` attribute, you can use th
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 tier = trans.elem[0]
-seg = tier.elem[0]
+seg = tier.elem[1]
 print(f"transcription: {trans.name}")
 print(f"tier: {tier.name}")
 print(f"segment name: {seg.name}")
@@ -147,10 +147,10 @@ print(f"segment content: {seg.content}")
 Output:
 
 ```console
-transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
-tier: ref@A03
-segment name: a0
-segment content: 0001_DoReCo_doreco_urum1249_UUM-TXT-AN-00000-A03
+transcription: doreco_teop1238_Gol_01
+tier: ref@Gol
+segment name: a1
+segment content: 0001_DoReCo_doreco_teop1238_Gol_01
 ```
 
 ### Time
@@ -159,21 +159,24 @@ segment content: 0001_DoReCo_doreco_urum1249_UUM-TXT-AN-00000-A03
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 tier = trans.elem[0]
-seg = tier.elem[0]
+seg1 = tier.elem[0]
+seg2 = tier.elem[1]
 print(f"transcription: {trans.start} -- {trans.end}")
 print(f"tier: {tier.start} -- {tier.end}")
-print(f"segment: {seg.start} -- {seg.end}")
+print(f"first segment: {seg1.start} -- {seg1.end}")
+print(f"second segment: {seg2.start} -- {seg2.end}")
 ```
 
 Output:
 
 ```console
-transcription: 0.0 -- 105.326
-tier: 0.0 -- 105.326
-segment: 0.0 -- 7.415
+transcription: 0.0 -- 116.0
+tier: 0.0 -- 116.0
+first segment: 0.0 -- 0.06
+second segment: 0.06 -- 2.84
 ```
 
 ### Structure
@@ -182,7 +185,7 @@ segment: 0.0 -- 7.415
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
 tier = trans.elem[0]
 seg = tier.elem[0]
@@ -195,10 +198,10 @@ print(f"structure of the first segment: {seg.struct.name}")
 Output:
 
 ```console
-transcription: doreco_urum1249_UUM-TXT-AN-00000-A03
-tier: ref@A03
-structure of the first tier: doreco_urum1249_UUM-TXT-AN-00000-A03
-structure of the first segment: ref@A03
+transcription: doreco_teop1238_Gol_01
+tier: ref@Gol
+structure of the first tier: doreco_teop1238_Gol_01
+structure of the first segment: ref@Gol
 ```
 
 ### Index
@@ -207,20 +210,20 @@ structure of the first segment: ref@A03
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-pos_tier = trans.findName("ps@A03")
+ph_tier = trans.findName("ph@")
 #Get the object's index.
-ind = pos_tier.index()
-print(f"Index of tier /{pos_tier.name}/: {ind}")
+ind = ph_tier.index()
+print(f"Index of tier /{ph_tier.name}/: {ind}")
 print(f"Name of the tier with index {ind}: {trans.elem[ind].name}")
 ```
 
 Output:
 
 ```console
-Index of tier /ps@A03/: 6
-Name of the tier with index 6: ps@A03
+Index of tier /ph@Gol/: 6
+Name of the tier with index 6: ph@Gol
 ```
 
 ## Remove an Object
@@ -229,9 +232,9 @@ Name of the tier with index 6: ps@A03
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-wd_tier = trans.findName("wd@A03")
+wd_tier = trans.findName("wd@")
 print(f"First four words: {[seg.content for seg in wd_tier.elem[:4]]}")
 word = wd_tier.elem[0]
 #Removes a segment (word) using that segment.
@@ -245,9 +248,9 @@ print(f"After removing the next word: {[seg.content for seg in wd_tier.elem[:2]]
 Output:
 
 ```console
-First four words: ['birınji', 'gäldılär', '<p:>', 'bizım']
-After removing the first word: ['gäldılär', '<p:>', 'bizım']
-After removing the next word: ['<p:>', 'bizım']
+First four words: ['<p:>', 'Teo', 'peho', 'vuri']
+After removing the first word: ['Teo', 'peho', 'vuri']
+After removing the next word: ['peho', 'vuri']
 ```
 
 ### Parents and Children
@@ -256,33 +259,33 @@ After removing the next word: ['<p:>', 'bizım']
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-pos_tier = trans.findName("ps@A03")
-#Get the parent tier of pos tier.
-parent_tier = pos_tier.parent()
-print(f"direct parent tier of /pos tier/: {parent_tier.name}")
-print(f"grandparent tier of /pos tier/: {parent_tier.parent().name}")
-#Get all parent tiers of pos tier.
-parent_tiers = pos_tier.parents()
-print(f"all parent tiers of /pos tier/: {[par.name for par in parent_tiers]}")
+ph_tier = trans.findName("ph@")
+#Get the parent tier of phone tier.
+parent_tier = ph_tier.parent()
+print(f"direct parent tier of /phone tier/: {parent_tier.name}")
+print(f"grandparent tier of /phone tier/: {parent_tier.parent().name}")
+#Get all parent tiers of phone tier.
+parent_tiers = ph_tier.parents()
+print(f"all parent tiers of /phone tier/: {[par.name for par in parent_tiers]}")
 ```
 
 Output:
 
 ```console
-direct parent tier of /pos tier/: mb@A03
-grandparent tier of /pos tier/: wd@A03
-all parent tiers of /pos tier/: ['ref@A03', 'wd@A03', 'mb@A03']
+direct parent tier of /phone tier/: mb@Gol
+grandparent tier of /phone tier/: wd@Gol
+all parent tiers of /phone tier/: ['ref@Gol', 'wd@Gol', 'mb@Gol']
 ```
 
 `.children()` returns a list containing each direct child object of an object. `.allChildren()` returns a list containing all (direct and indirect) child objects:
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-ref_tier = trans.findName("ref@A03")
+ref_tier = trans.findName("ref@")
 #Get only the direct child tiers of ref tier.
 direct_child_tiers = ref_tier.children()
 print(f"direct child tiers of /reference tier/:")
@@ -297,19 +300,19 @@ Output:
 
 ```console
 direct child tiers of /reference tier/:
-['ft@A03', 'tx@A03', 'wd@A03', 'ge-a@unknown']
+['tx@Gol', 'ft@Gol', 'wd@Gol']
 all child tiers of /reference tier/
-['ft@A03', 'tx@A03', 'wd@A03', 'mb@A03', 'gl@A03', 'ps@A03', 'ph@A03', 'doreco-mb-algn@A03', 'ge-a@unknown']
+['tx@Gol', 'ft@Gol', 'wd@Gol', 'mb@Gol', 'gl@Gol', 'ph@Gol', 'doreco-mb-algn@Gol', 'gloss', 'mc-zero']
 ```
 
 Both methods collect child objects regardless to which structure they belong to:
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-morph_tier = trans.findName("mb@A03")
-mb_seg = morph_tier.elem[0]
+morph_tier = trans.findName("mb@")
+mb_seg = morph_tier.elem[3]
 children = mb_seg.children()
 print(f"child segments of /{mb_seg.content}/")
 print([seg.content for seg in children])
@@ -318,18 +321,18 @@ print([seg.content for seg in children])
 Output:
 
 ```console
-child segments of /birınji/
-['first', 'A', 'b', 'i', '4', 'M', 'n', 'dZ', 'i', '****']
+child segments of /peho/
+['INDEF3.SG', 'p', 'e', 'h', 'o', '****']
 ```
 
 `.childDict()` and `.allChildDict()` instead return a dictionary, with (1) the structure of a child element as a _dictionary key_ and (2) a list containing child elements belonging to a structure as a _dictionary value_:
 
 ```python
 from corflow import fromElan
-file = "doreco_urum1249_UUM-TXT-AN-00000-A03.eaf"
+file = "doreco_teop1238_Gol_01.eaf"
 trans = fromElan.fromElan(file)
-morph_tier = trans.findName("mb@A03")
-mb_seg = morph_tier.elem[0]
+morph_tier = trans.findName("mb@")
+mb_seg = morph_tier.elem[3]
 children = mb_seg.childDict()
 for tier,segs in children.items():
     print(f"child segments belonging to child tier: {tier.name}")
@@ -339,12 +342,10 @@ for tier,segs in children.items():
 Output:
 
 ```console
-child segments belonging to child tier: gl@A03
-['first']
-child segments belonging to child tier: ps@A03
-['A']
-child segments belonging to child tier: ph@A03
-['b', 'i', '4', 'M', 'n', 'dZ', 'i']
-child segments belonging to child tier: doreco-mb-algn@A03
+child segments belonging to child tier: gl@Gol
+['INDEF3.SG']
+child segments belonging to child tier: ph@Gol
+['p', 'e', 'h', 'o']
+child segments belonging to child tier: doreco-mb-algn@Gol
 ['****']
 ```
