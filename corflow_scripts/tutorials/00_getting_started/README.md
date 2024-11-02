@@ -1,6 +1,6 @@
 # Getting Started
 
-This tutorial explains step by step how to (1) set up and install Python, Pip, Venv and finally Corflow as well as how to (2) set up and use the [general functions](../../general_functions.py)
+This tutorial explains step by step how to (1) set up and install Python, Pip, Venv and finally Corflow as well as how to (2) set up and use functions from the [`general functions.py`](../../general_functions.py) file.
 
 ## Prerequisites
 
@@ -95,7 +95,7 @@ Open your terminal, navigate to your virtual environment and activate it, and en
 pip install corflow
 ```
 
-If you have not installed any other Python packages prior to Corflow in you newly created virtual environment then running
+If you have not installed any other Python packages prior to Corflow in your newly created virtual environment, then running
 
 ```shell
 pip list
@@ -111,3 +111,21 @@ pip     24.0
 ```
 
 Make sure to always activate your virtual environment, when working with the installed Corflow module. Otherwise, the Python interpreter will not find it (since it is not globally installed) and return and error.
+
+## General functions
+
+[`general functions.py`](../../general_functions.py) contains functions specifically build to be used when working with datasets (e.g. .eaf files) using Corflow. To use these functions, first, copy `general_functions.py` into the directory where your Python scripts are located. Second, in your Python file (located in the same directory as `general_functions.py`) import specific functions from `general_functions.py`. The following code shows how to import the `get_segs()` function:
+
+```python
+from general_functions import get_segs
+```
+
+If `general_functions.py` is not located in the same directory as your Python script, import the `sys` module and add the directory of `general_functions.py` to `path`. The following code shows how to import the `get_segs()` function, if `general_functions.py` is located one directory above the current Python script:
+
+```python
+import sys
+sys.path.append("../")
+from general_functions import get_segs
+```
+
+If your Python script cannot import the function from `general_functions.py`, open `general_functions.py` manually in a text editor (or IDE), select and copy the function you are interested in and paste it into your Python script.
