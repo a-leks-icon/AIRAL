@@ -283,37 +283,3 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
             log_file.write(log["text"])
 
     return get_tier_segs
-
-def relations(show:bool=True):
-    '''Lists all relations currently supported by the get_segs function.
-
-    Args:
-        show: If True, prints the dictionary. By default, True.
-
-    Returns:
-        A dictionary with relation names as keys and descriptions as values.
-    '''
-
-    relations = {
-        "time aligned": "A segment to be collected has to have the exact same start end end time as the referenced segment.",
-        "time start": "A segment to be collected has to have the exact same start time as the referenced segment.",
-        "time end": "A segment to be collected has to have the exact same end time as the referenced segment.",
-        "time next adjacent": "The start time of a segment to be collected has to equal the end time of the referenced segment.",
-        "time previous adjacent": "The end time of a segment to be collected has to equal the start time of the referenced segment.",
-        #"start time overlap": "",
-        #"end time overlap": "The end time of a segment to be collected is greater than the start time of a referenced segment",
-        "times inside": "The start and end time of a segment to be collected are within the start and end time of a referenced segment.",
-        "times outside": "The start and end time of a segment to be collected are outside the start and end time of a referenced segment.",
-        "next": "",
-        "previous": "",
-        "distant next": "",
-        "distant previous": "",
-        "direct child": "",
-        "direct parent": "",
-        "distant child": "",
-        "distant parent": ""
-    }
-    if show:
-        return print(relations)
-    else:
-        return relations
