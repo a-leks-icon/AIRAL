@@ -1,6 +1,6 @@
 # Getting Started
 
-This tutorial explains step by step how to set up and install Python, Pip, Venv and finally Corflow.
+This tutorial explains step by step how to (1) set up and install Python, Pip, Venv and finally Corflow as well as how to (2) set up and use the [general functions](../../general_functions.py)
 
 ## Prerequisites
 
