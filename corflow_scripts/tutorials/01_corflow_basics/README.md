@@ -251,7 +251,7 @@ Index of tier /ph@Gol/: 6
 Name of the tier with index 6: ph@Gol
 ```
 
-## Remove an Object
+### Remove an Object
 
 `.remove()` removes an object from its structure. `.pop()` does the same, but uses the index of the object instead of the object itself:
 
