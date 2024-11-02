@@ -53,7 +53,7 @@ Install the _venv_ module to create virtual environments:
 ```shell
 sudo apt install python3-venv
 ```
-Create a new virtual environment in your current directory named _my\_venv_ (you can choose another name or path):
+Create a new virtual environment in your current directory named _my\_venv_ (you can choose another name or path). Ideally, your virtual environment is located in the same directory, where you are going to write .py scripts and use Corflow.
 
 ```shell
 python3 -m venv my-venv
@@ -79,6 +79,12 @@ Package Version
 pip     24.0
 ```
 
+If you want to deactivate your virtual environment, type
+
+```shell
+deactivate
+```
+
 If you encounter problems creating a virtual environment, check out the [official documentation](https://docs.python.org/3/library/venv.html) for the venv module.
 
 ## Install Corflow
@@ -88,3 +94,20 @@ Open your terminal, navigate to your virtual environment and activate it, and en
 ```shell
 pip install corflow
 ```
+
+If you have not installed any other Python packages prior to Corflow in you newly created virtual environment then running
+
+```shell
+pip list
+```
+
+in your terminal should print something similar to:
+
+```console
+Package Version
+------- -------
+corflow 3.2.15
+pip     24.0
+```
+
+Make sure to always activate your virtual environment, when working with the installed Corflow module. Otherwise, the Python interpreter will not find it (since it is not globally installed) and return and error.
