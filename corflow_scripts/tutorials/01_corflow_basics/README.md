@@ -28,7 +28,9 @@ trans = fromElan.fromElan(file)
 toElan.toElan("new_file.eaf",trans)
 ```
 
-Importing for example `toPraat` and using `toPraat.toPraat` instead of `toElan.toElan`, Corflow makes it possible to convert a file's format.
+Importing e.g. the module `toPraat` and using `toPraat.toPraat` instead of `toElan.toElan` when importing an .eaf file with `fromElan.fromElan`, Corflow makes it possible to convert a file's format.
+
+**Note**: Importing and exporting an .eaf file will change the .xml structure and/or the number of .xml elements of the imported file. This mainly results in the size of the file being reduced. The overall structure of the file as well as its content are still intact. However, it might be the case that certain programs return an error, when importing the new .eaf file. To avoid such errors, the file has to be (1) opened in ELAN, (2) changed in some way (e.g. changing a segment's content/string) and (3) saved. As a result, the size of the file is restored and no error should occur anymore. This issue will hopefully be completely gone in future releases of Corflow.
 
 ## Classes and Objects
 
