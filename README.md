@@ -78,3 +78,13 @@ If you have questions, want to make comments, note issues or if you need help wi
 This repository was created and is maintained by [Aleksandr Schamberger](https://github.com/a-leks-icon/).
 
 Scripts were written by [Michelle Elizabeth Throssell Balagué](https://github.com/michellethr), [Ludger Paschen](https://github.com/LuPaschen) and Aleksandr Schamberger.
+
+## References
+
+DoReCo database:
+
+* Seifart, Frank, Ludger Paschen & Matthew Stave (eds.). 2022. Language Documentation Reference Corpus (DoReCo) 1.2. Berlin & Lyon: Leibniz-Zentrum Allgemeine Sprachwissenschaft & laboratoire Dynamique Du Langage (UMR5596, CNRS & Université Lyon 2). DOI:10.34847/nkl.7cbfq779
+
+Methods used to build DoReCo:
+
+* Paschen, Ludger, François Delafontaine, Christoph Draxler, Susanne Fuchs, Matthew Stave & Frank Seifart. 2020. Building a Time-Aligned Cross-Linguistic Reference Corpus from Language Documentation Data (DoReCo). In Proceedings of The 12th Language Resources and Evaluation Conference, 2657–2666. Marseille, France: European Language Resources Association. https://www.aclweb.org/anthology/2020.lrec-1.324 (2024/11/02).

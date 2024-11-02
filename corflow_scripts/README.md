@@ -1,6 +1,6 @@
 # Corflow Scripts
 
-Python functions build on top of the **[Corflow](https://github.com/DoReCo/corflow)** tool complementing it when working with .eaf (ELAN) files.
+Python functions build on top of the **[Corflow](https://github.com/DoReCo/corflow)** tool complementing it when working with .eaf (ELAN) files and other.
 
 All functions specifically build for the scripts in this directory are located in `general_functions.py`.
 
