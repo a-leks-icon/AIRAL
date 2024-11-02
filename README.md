@@ -88,3 +88,7 @@ DoReCo database:
 Methods used to build DoReCo:
 
 * Paschen, Ludger, François Delafontaine, Christoph Draxler, Susanne Fuchs, Matthew Stave & Frank Seifart. 2020. Building a Time-Aligned Cross-Linguistic Reference Corpus from Language Documentation Data (DoReCo). In Proceedings of The 12th Language Resources and Evaluation Conference, 2657–2666. Marseille, France: European Language Resources Association. https://www.aclweb.org/anthology/2020.lrec-1.324 (2024/11/02).
+
+## License
+
+This repository is licensed under the [Apache-2.0 license](NOTICE).
