@@ -69,7 +69,9 @@ Languages, for which specific AIRAL scripts were written, are the following:
 * Urum
 * Yongning Na
 
-## Contact
+## Contact and Help
+
+Feel free to create a new [GitHub Issue](https://github.com/a-leks-icon/AIRAL/issues) when you find an error.
 
 If you have questions, want to make comments, note issues or if you need help with scripts or functions, feel free to contact [Aleksandr Schamberger](mailto:mail@aleksandrschamberger.de).
 
