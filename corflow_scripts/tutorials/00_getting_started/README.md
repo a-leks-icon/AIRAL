@@ -112,7 +112,7 @@ pip     24.0
 
 Make sure to always activate your virtual environment, when working with the installed Corflow module. Otherwise, the Python interpreter will not find it (since it is not globally installed) and return and error.
 
-## General functions
+## General Functions
 
 [`general functions.py`](../../general_functions.py) contains functions specifically build to be used when working with datasets (e.g. .eaf files) using Corflow. To use these functions, first, copy `general_functions.py` into the directory where your Python scripts are located. Second, in your Python file (located in the same directory as `general_functions.py`) import specific functions from `general_functions.py`. The following code shows how to import the `get_segs()` function:
 

@@ -128,7 +128,7 @@ morph and gloss tier:
 ['mb@Gol', 'gl@Gol']
 ```
 
-To access a `Segment` object based on their `.content` attribute, you can use the `get_segs` function from the [general_functions](../../general_functions.py) script (more on that in the [third tutorial]()).
+To access a `Segment` object based on its `.content` attribute, you can use the `get_segs()` function from the [`general_functions.py`](../../general_functions.py) script (more on that in the [third tutorial](../02_collecting_segments/README.md)).
 
 ### Name and Content
 

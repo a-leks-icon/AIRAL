@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 from inspect import stack
-from corflow.Transcription import Transcription
+from corflow.Transcription import Transcription,Tier
 
 def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
     r'''Collects segments based on a number of conditions.
@@ -283,3 +283,74 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
             log_file.write(log["text"])
 
     return get_tier_segs
+
+def copy_tier(tier_to_copy:Tier,new_tier_name:str,parent_tier:Tier=None,trans:Transcription=None,index:int=-1) -> Tier:
+    '''Copies an existing tier and its segments to a transcription.
+
+    Copies an existing tier **tier_to_copy** and its segments to a transcription **trans** at position **index** with its new name **new_tier_name** and **parent_tier**. By default, **parent_tier** equals None, meaning that the new tier is a root tier. By default, **trans** is an empty string, meaning that the new tier gets added to the transcription of the **tier_to_copy**. By default, **index** is a negative integer, meaning that the new tier is added at the last position of **trans**.
+
+    Args:
+        tier_to_copy: The `Tier` object to be copied.
+        new_tier_name: Name (string) of the new tier.
+        parent_tier: The `Tier` object, which is the parent tier of the new tier. Equals by default None, meaning that the new tier is a root tier.
+        trans: The `Transcription` object, to which the new tier gets added. Equals by default None, meaning that new tier gets added to the transcription of **tier_to_copy**.
+        index: An integer identifying the position at which the new tier gets added to **trans**. Is by default a negative integer, meaning that the new tier is added at the last position of the transcription **trans**.
+
+    Returns:
+        The new, copied `Tier` object.
+    '''
+    if not isinstance(tier_to_copy,Tier):
+        raise TypeError("'tier_to_copy' is not a Tier object.")
+    trns = trans
+    if not trns:
+        trns = tier_to_copy.struct
+
+
+
+    '''
+    def add(self,index=-1,elem=None,parent=None,struct=None,det=False):
+        """Adds (copies) a pre-existing object to 'struct.elem'."""
+        if not elem:
+            return self._retEmpty(det)
+        struct = self._fixStruct(struct); index = self._fixIndex(index)
+        nel = self._copy(struct,index,elem,parent,False,det)
+        return self._retDet(nel,det)
+        # set functions
+
+    def _copy(self,struct,index,elem,parent,ch_child,det):
+        """Copies an already existing element 'elem' to 'struct'."""
+        struct.elem.insert(index,elem.copy(struct))         # copy
+        struct.d_elem[struct.elem[index]] = [index,parent]  # parent
+        if ch_child:                                        # children
+            l_struct = elem.struct.d_elem[elem][2:]
+            struct.d_elem[elem] += l_struct.copy()
+        self._fixIndexes(struct,index+1,len(struct.elem))   # indexes
+        return self._retDet(struct.elem[index],det)
+
+    def _retEmpty(self,det=False):
+        """Technical function to return a not-found case."""
+        if det:
+            return ("",-1,None)
+        else:
+            return None
+
+    def _fixStruct(self,struct):
+        if not struct:
+            struct = self
+        return struct
+    '''
+
+
+'''
+def copy_tier(transcription,tier,new_tier_name,parent_tier,char_num=1):
+
+    transcription.add(-1,tier)
+    new_tier = transcription.elem[-1]
+    new_tier.name = new_tier_name
+    for seg in new_tier:
+        seg.name = chr(ord(seg.name[0])+char_num) + seg.name[1:]
+    new_tier.setParent(parent_tier)
+    for seg in new_tier:
+        seg.setParent(parent_tier.getTime(seg.start))
+    return new_tier
+'''
