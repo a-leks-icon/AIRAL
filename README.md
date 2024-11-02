@@ -91,4 +91,4 @@ Methods used to build DoReCo:
 
 ## License
 
-This repository is licensed under the [Apache-2.0 license](NOTICE).
+This repository is licensed under the [Apache-2.0 license](LICENSE) including a [NOTICE](NOTICE).
