@@ -106,7 +106,7 @@ second segment: 0001_DoReCo_doreco_teop1238_Gol_01
 
 ### Accessing Objects by their Name (regular expression)
 
-The methods `.findName` and `.findAllName` return one or all objects, whose `.name` attribute match a given regular expression. The following example accesses (1) the word tier only and (2) the morph and gloss tier:
+The methods `.findName` and `.findAllName` return one or all objects, whose `.name` attribute match a given regular expression. The following example accesses (1) the word tier only and (2) the morph and gloss tier by calling both methods on the `Transcription` object.
 
 ```python
 from corflow import fromElan
@@ -128,11 +128,13 @@ morph and gloss tier:
 ['mb@Gol', 'gl@Gol']
 ```
 
-To access a `Segment` object based on its `.content` attribute, you can use the `get_segs()` function from the [`general_functions.py`](../../general_functions.py) script (more on that in the [third tutorial](../02_collecting_segments/README.md)).
+Alternatively, one can call the `.getName()` method on an object (e.g. a `Transcription`) and use the exact name of one of its elements (e.g. a `Tier`) to obtain that element.
+
+<!--To access a `Segment` object based on its `.content` attribute, you can use the `get_segs()` function from the [`general_functions.py`](../../general_functions.py) script (more on that in the [third tutorial](../02_collecting_segments/README.md)).-->
 
 ### Name and Content
 
-`.name` contains an object's name. If it's a `Transcription`, `.name` contains the file's name without the file extension. If it's a `Segment`, `.name` contains the unique ID of that segment. To access a segment's string, use `.content` instead:
+`.name` contains an object's name. If it's a `Transcription`, `.name` contains the file's name without the file extension. If it's a `Segment`, `.name` contains the unique ID of that segment. To access the annotation value of a segment, use `.content` instead:
 
 ```python
 from corflow import fromElan
@@ -526,10 +528,8 @@ The segment /INDEF3.SG/ has no child segments: []
 
 ## References
 
-The .eaf file used in this tutorial belongs to **Teop** from DoReCo:
+The `.eaf` file used in this tutorial:
 
-* Mosel, Ulrike. 2022. Teop DoReCo dataset. In Seifart, Frank, Ludger Paschen and Matthew Stave (eds.). Language Documentation Reference Corpus (DoReCo) 1.2. Berlin & Lyon: Leibniz-Zentrum Allgemeine Sprachwissenschaft & laboratoire Dynamique Du Langage (UMR5596, CNRS & Université Lyon 2). https://doreco.huma-num.fr/languages/teop1238 (Accessed on 02/11/2024). DOI:10.34847/nkl.9322sdf2
+* `doreco_teop1238_Gol_01.eaf` from *Teop* from DoReCo 1.2:<br><br>Mosel, Ulrike. 2022. Teop DoReCo dataset. In Seifart, Frank, Ludger Paschen and Matthew Stave (eds.). Language Documentation Reference Corpus (DoReCo) 1.2. Berlin & Lyon: Leibniz-Zentrum Allgemeine Sprachwissenschaft & laboratoire Dynamique Du Langage (UMR5596, CNRS & Université Lyon 2). https://doreco.huma-num.fr/languages/teop1238 (Accessed on 02/11/2024). DOI:10.34847/nkl.9322sdf2
 
-DoReCo database:
-
-* Seifart, Frank, Ludger Paschen & Matthew Stave (eds.). 2022. Language Documentation Reference Corpus (DoReCo) 1.2. Berlin & Lyon: Leibniz-Zentrum Allgemeine Sprachwissenschaft & laboratoire Dynamique Du Langage (UMR5596, CNRS & Université Lyon 2). DOI:10.34847/nkl.7cbfq779
+* The DoReCo database:<br><br>Seifart, Frank, Ludger Paschen & Matthew Stave (eds.). 2022. Language Documentation Reference Corpus (DoReCo) 1.2. Berlin & Lyon: Leibniz-Zentrum Allgemeine Sprachwissenschaft & laboratoire Dynamique Du Langage (UMR5596, CNRS & Université Lyon 2). DOI:10.34847/nkl.7cbfq779
