@@ -8,7 +8,7 @@ Some tasks involve changing `Segments` and `Tiers` while keeping the original on
 
 <img src="segments_to_be_tokenized_mod.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01.eaf' from Teop from DoReCo 1.2 showing an instance of problematic segments, which have to be tokenized.">
 
-The screenshot highlights two `Segments`: *a=naa* on the morph tier and *OBJM=1SG.PRON* on the gloss tier corresponding to the word *anaa*. Both segments contain two separate annotation units: *a=naa* contains the proclitic *a=* and the root *naa* with their respective glosses being *OBJM=* and *1SG.PRON*. Each segment needs to be split into two separate segments, where each segment contains one morph or gloss.
+The screenshot highlights two `Segments`: *a=naa* on the morph tier and *OBJM=1SG.PRON* on the gloss tier corresponding to the word *anaa*. Both segments contain two separate units: *a=naa* contains the proclitic *a=* and the root *naa* with their respective glosses being *OBJM=* and *1SG.PRON*. Each segment needs to be split into two separate segments, where each segment contains one morph or gloss.
 
 Corflow provides the `.add()` method to copy and add existing objects. In order to copy and add an existing `Tier` to a `Transcription`, we call the `.add()` method on a `Transcription` object. To copy and add a `Segment` to a `Tier`, we would call the `.add()` method on a `Tier` object.
 
@@ -101,7 +101,7 @@ Having accessed the morph and gloss tier, we copy and add the morph tier as a ne
 2. **elem**: The object we want to copy and add.
 3. **parent**: The parent object of the object we want to copy and add.
 
-We (1) specify the index of the new copied morph tier as the last (newest) tier in the list of tiers with *-1* (using *len(trans)* instead would have had the same effect), (2) specify the morph tier as the object we want to copy and add, and (3) save the new tier as a variable:
+We (1) specify the index of the new copied morph tier as the last (newest) tier in the list of tiers with `-1` (using `len(trans)` instead would have had the same effect), (2) specify the morph tier as the object we want to copy and add, and (3) return the new tier:
 
 ```python
 #Copy and add the morph tier.
@@ -130,7 +130,7 @@ new_name = mb_tier_name_split[0] + "_tok"
 new_mb_tier.name = new_name + mb_tier_name_split[1] + mb_tier_name_split[2]
 ```
 
-Having copied, added and renamed the morph tier, we do the same with the gloss tier. This time however, we specify its parent tier as the newly added morph tier, since we want the gloss tier and its segments to correspond to the new morph tier and its segments:
+Having copied, added and renamed the morph tier, we do the same with the gloss tier. This time however, we specify its parent tier as the newly added morph tier, since we want the gloss tier and its segments corresponding to the new morph tier and its segments:
 
 ```python
 # Copy and add the gloss tier.
