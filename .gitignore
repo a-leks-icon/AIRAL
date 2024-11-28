@@ -1,10 +1,9 @@
 input_files
 output_files
 view_files
-brainstorming
+forge
 data
 old_scripts
-pypi_github
 airal_archive/test.py
 airal_archive/tast.py
 airal_archive/__pycache__
