@@ -18,7 +18,7 @@ Corflow is both a tool to (1) manipulate a file and (2) to change a file's forma
 To either import or export a file containing linguistic data, import the module, whose name is made up of (1) the name of the tool (2) prefixed with either _from_ or _to_, and use the module's function with the same name. E.g. to import and export an .eaf file, create a Python script with the following code:
 
 ```python
-# Import the ELAN corflow modules.
+# Importing the ELAN corflow modules.
 from corflow import fromElan,toElan
 # Path to the .eaf file.
 file = "doreco_teop1238_Gol_01.eaf"
@@ -28,30 +28,30 @@ trans = fromElan.fromElan(file)
 toElan.toElan("new_file.eaf",trans)
 ```
 
-Importing e.g. the module `toPraat` and using `toPraat.toPraat` instead of `toElan.toElan` when importing an .eaf file with `fromElan.fromElan`, Corflow makes it possible to convert a file's format.
+Importing for example the module `toPraat` and using `toPraat.toPraat` instead of `toElan.toElan` when importing an .eaf file with `fromElan.fromElan`, Corflow makes it possible to convert a file's format.
 
-**Note**: Importing and exporting an .eaf file will change the .xml structure and/or the number of .xml elements of the imported file. This mainly results in the size of the file being reduced. The overall structure of the file as well as its content are still intact. However, it might be the case that certain programs return an error, when importing the new .eaf file. To avoid such errors, the file has to be (1) opened in ELAN, (2) changed in some way (e.g. changing a segment's content/string) and (3) saved. As a result, the size of the file is restored and no error should occur anymore. This issue will hopefully be completely gone in future releases of Corflow.
+**Note**: Importing and exporting an .eaf file will change the .xml structure and/or the number of .xml elements of the imported file. This mainly results in the size of the file being reduced. The overall structure of the file as well as its content are still intact. However, it might be the case that certain programs return an error, when importing the new .eaf file. To avoid such errors, the file has to be (1) opened in ELAN, (2) changed in some way (e.g. changing the annotation value of a segment) and (3) saved. As a result, the size of the file is restored and no error should occur anymore. This issue will hopefully be completely gone in future releases of Corflow.
 
 ## Classes and Objects
 
-The following edited screenshot taken of the file `doreco_teop1238_Gol_01.eaf` in ELAN illustrates Corflow's model:
+The following edited screenshot taken of the file `doreco_teop1238_Gol_01.eaf` from *Teop* in ELAN illustrates Corflow's model:
 
 ![Screenshot of the file 'doreco_teop1238_Gol_01.eaf' with added rectangles displaying Corflow classes and objects 'Transcription', 'Tier' and 'Segment'.](corflow_classes_elan_example_03.png)
 
-Importing a file using Corflow creates a `Transcription` object. A `Transcription` object contains (multiple) `Tier` objects and a `Tier` object contains (multiple) `Segment` objects. `Transcriptions`, `Tiers` and `Segments` relate (1) linearly and (2) hierarchically to each other as well as share a number of attributes and methods (as they all belong to the root class `Conteneur`. In what follows, I illustrate common attributes and methods used in Corflow.
+Importing a file using Corflow creates a `Transcription` object. A `Transcription` object contains (multiple) `Tier` objects and a `Tier` object contains (multiple) `Segment` objects. `Transcriptions`, `Tiers` and `Segments` relate (1) linearly and (2) hierarchically to each other as well as share a number of attributes and methods (as they all belong to the root class `Conteneur`). In what follows, I illustrate common attributes and methods used in Corflow.
 
 ## Help
 
 To get information about an object's attributes and methods call the `help` function with the respective object as an argument or read the [Corflow GitHub Wiki](https://github.com/DoReCo/corflow/wiki).
 
 ```python
-# Import the respective class.
+# Importing the respective class.
 from corflow.Transcription import Transcription, Tier, Segment
-# Create an object from that class.
+# Creating an object from that class.
 trans = Transcription()
 tier = Tier()
 seg = Segment()
-# Call the help function.
+# Calling the help function.
 help(trans)
 help(tier)
 help(seg)
@@ -106,7 +106,7 @@ second segment: 0001_DoReCo_doreco_teop1238_Gol_01
 
 ### Accessing Objects by their Name (regular expression)
 
-The methods `.findName` and `.findAllName` return one or all objects, whose `.name` attribute match a given regular expression. The following example accesses (1) the word tier only and (2) the morph and gloss tier by calling both methods on the `Transcription` object.
+The methods `.findName()` and `.findAllName()` return one or all objects, whose `.name` attribute match a given regular expression. The following example accesses (1) the word tier only and (2) the morph and gloss tier by calling both methods on the `Transcription` object.
 
 ```python
 from corflow import fromElan
@@ -134,7 +134,7 @@ Alternatively, one can call the `.getName()` method on an object (e.g. a `Transc
 
 ### Name and Content
 
-`.name` contains an object's name. If it's a `Transcription`, `.name` contains the file's name without the file extension. If it's a `Segment`, `.name` contains the unique ID of that segment. To access the annotation value of a segment, use `.content` instead:
+`.name` contains an object's name. If it's a `Transcription`, `.name` contains the file's name without the file extension. If it's a `Segment`, `.name` contains the unique annotation ID of that segment. To access the annotation value of a segment, use `.content` instead:
 
 ```python
 from corflow import fromElan
@@ -316,7 +316,7 @@ grandparent tier of /phone tier/: wd@Gol
 all parent tiers of /phone tier/: ['ref@Gol', 'wd@Gol', 'mb@Gol']
 ```
 
-If an object does not have a parent object (e.g. because it is the root tier), Python throws out an error, if the attribute of method of that non-existing object is accessed:
+If an object does not have a parent object (e.g. because it is the root tier), Python throws out an error, if an attribute or method of that non-existing object is accessed:
 
 ```python
 from corflow import fromElan
@@ -340,7 +340,7 @@ Traceback (most recent call last):
 AttributeError: 'NoneType' object has no attribute 'name'
 ```
 
-Avoid such errors by checking, whether (1) `.parent()` returns an object instead of None and whether (2) `.parents()` returns a non-empty list before trying to access objects of that list.
+Avoid such errors by checking, whether (1) `.parent()` returns an object instead of `None` and whether (2) `.parents()` returns a non-empty list before trying to access objects of that list.
 
 ```python
 from corflow import fromElan
@@ -418,7 +418,7 @@ all child tiers of /ref@Gol/
 ['tx@Gol', 'ft@Gol', 'wd@Gol', 'mb@Gol', 'gl@Gol', 'ph@Gol', 'doreco-mb-algn@Gol', 'gloss', 'mc-zero']
 ```
 
-`.children()` and `.allChildren()` collect child objects regardless to which structures these belong to. The following code returns a list with all child segments of the morph segment `peho` regardless to which tiers (gloss, phone or align tier) these segments belong to:
+`.children()` and `.allChildren()` collect child objects regardless to which structures these belong to. The following code returns a list with all child segments of the morph segment *peho* regardless to which tiers (gloss, phone or align tier) these segments belong to:
 
 ```python
 from corflow import fromElan
@@ -440,7 +440,7 @@ child segments of /peho/
 ['INDEF3.SG', 'p', 'e', 'h', 'o', '****']
 ```
 
-`.childDict()` and `.allChildDict()` return a dictionary, where child objects are sorted: each child object belonging to the same structure is put into the same list as a _dictionary value_. This list of child objects can be accessed using the structure object they belong to as the _dictionary key_. The following code sorts all child segments of the morph `peho` by printing (1) the name of the tier and (2) the content of all child segments belonging to that tier.
+`.childDict()` and `.allChildDict()` return a dictionary, where child objects are sorted: each child object belonging to the same structure is part of a list (_dictionary value_). This list of child objects can be accessed using the structure object they belong to (_dictionary key_). The following code sorts all child segments of the morph *peho* by printing (1) the name of the child tier as well as (2) the content of all child segments belonging to that child tier.
 
 ```python
 from corflow import fromElan
@@ -494,7 +494,7 @@ Traceback (most recent call last):
 IndexError: list index out of range
 ```
 
-Either iterate through lists or dictionaries, or check, whether a list or dictionary is non-empty before accessing objects:
+Either iterate through lists or dictionaries, or check whether a list or dictionary is non-empty before accessing objects:
 
 ```python
 from corflow import fromElan
