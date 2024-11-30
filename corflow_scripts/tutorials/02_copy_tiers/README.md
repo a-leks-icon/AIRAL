@@ -170,7 +170,7 @@ toElan.toElan(trans.name + "_copied_legacy_tiers" + ".eaf",trans)
 
 The structure of the new file:
 
-<img src="copied_and_added_tiers.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_copied_legacy_tiers.eaf' from Teop showing the copied and added morph and gloss tiers alongside the original tiers.">
+<img src="copied_and_added_tiers_02.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_copied_legacy_tiers.eaf' from Teop showing the copied and added morph and gloss tiers alongside the original tiers.">
 
 ## Scripts
 
