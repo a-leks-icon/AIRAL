@@ -110,21 +110,21 @@ new_mb_tier = trans.add(-1,mb_tier)
 
 When omitting the third parameter, the `.add()` method defaults the value of the third parameter to `None`. We thereby add the morph tier as a *root* tier to the transcription. A *root* tier is defined as a tier with no parent tier. Objects, whose parent is defined as `None`, are root objects (this applies to `Tiers` and `Segments`).
 
-After copying and adding the new morph tier, we can change its name by accessing its `name` attribute. I want to add the suffix *_tok* to the name of the tier indicating the tokenization, which has to be done afterwards. If I know the name of the tier in advance, I can manually define the name of the new tier:
+After copying and adding the new morph tier, we can change its name by accessing its `name` attribute. I want to add the suffix *_legacy* to the name of the tier indicating the status of the tier. If I know the name of the tier in advance, I can manually define the name of the new tier:
 
 ```python
 # Define the name of the new morph tier.
-new_mb_tier.name = "mb_tok@Gol"
+new_mb_tier.name = "mb_legacy@Gol"
 ```
 
-However, in case I want to copy, add and rename multiple (morph) tiers of multiple files, I will need an automated solution instead. Hence, I (1) split the name of the original morph tier, (2) add the suffix *_tok* at the desired position and (3) and change the name of the new morph tier. The end result will be the same.
+However, in case I want to copy, add and rename multiple (morph) tiers of multiple files, I will need an automated solution instead. Hence, I (1) split the name of the original morph tier, (2) add the suffix *_legacy* at the desired position and (3) and change the name of the new morph tier. The end result will be the same.
 
 ```python
 # Split the name of the morph tier into three parts:
 # (1) "mb", (2) "@" and (2) the speaker "Gol".
 mb_tier_name_split = mb_tier.name.partition("@")
-# Add the suffix "_tok" to "mb".
-new_name = mb_tier_name_split[0] + "_tok"
+# Add the suffix "_legacy" to "mb".
+new_name = mb_tier_name_split[0] + "_legacy"
 # Add the remaining parts of the original name
 # and change the name of the new morph tier.
 new_mb_tier.name = new_name + mb_tier_name_split[1] + mb_tier_name_split[2]
@@ -143,8 +143,8 @@ Afterwards, we adjust the name of the new gloss tier as we did before for the ne
 # Split the name of the gloss tier into three parts:
 # (1) "gl", (2) "@" and (2) the speaker "Gol".
 gl_tier_name_split = gl_tier.name.partition("@")
-# Add the suffix "_tok" to "gl".
-new_name = gl_tier_name_split[0] + "_tok"
+# Add the suffix "_legacy" to "gl".
+new_name = gl_tier_name_split[0] + "_legacy"
 # Add the remaining parts of the original name
 # and change the name of the new gloss tier.
 new_gl_tier.name = new_name + gl_tier_name_split[1] + gl_tier_name_split[2]
@@ -161,16 +161,16 @@ for tier in trans:
     incr = tier.renameSegs("a",incr)
 ```
 
-Finally, the transcription is saved and exported as the new .eaf file `doreco_teop1238_Gol_01_tok.eaf`:
+Finally, the transcription is saved and exported as the new .eaf file `doreco_teop1238_Gol_01_copied_legacy_tiers.eaf`:
 
 ```python
 # Exporting the transcription as a new .eaf file.
-toElan.toElan(trans.name + "_tok" + ".eaf",trans)
+toElan.toElan(trans.name + "_copied_legacy_tiers" + ".eaf",trans)
 ```
 
 The structure of the new file:
 
-<img src="copied_and_added_tiers.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_tok.eaf' from Teop showing the copied and added morph and gloss tiers alongside the original tiers.">
+<img src="copied_and_added_tiers.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_copied_legacy_tiers.eaf' from Teop showing the copied and added morph and gloss tiers alongside the original tiers.">
 
 ## Scripts
 
@@ -180,7 +180,7 @@ All code snippets appearing in the tutorial are included in one of the three Pyt
 2. [`02_copy_tiers_short.py`](02_copy_tiers_short.py).
 3. [`02_copy_tiers_multiple_speakers.py`](02_copy_tiers_multiple_speakers.py).
 
-All three scripts import the .eaf file [`doreco_teop1238_Gol_01.eaf`](doreco_teop1238_Gol_01.eaf), copy and add the morph and its corresponding gloss tier, rename both new tiers and finally save the transcription as the file [`doreco_teop1238_Gol_01_tok.eaf`](doreco_teop1238_Gol_01_tok.eaf). While the first and third script extensively rename the new tiers, the second script does this manually. While the first and second script assume that the .eaf file only contains one set of morph and gloss tiers, the third script searches through all possibly available morph and gloss tiers.
+All three scripts import the .eaf file [`doreco_teop1238_Gol_01.eaf`](doreco_teop1238_Gol_01.eaf), copy and add the morph and its corresponding gloss tier, rename both new tiers and finally save the transcription as the file [`doreco_teop1238_Gol_01_copied_legacy_tiers.eaf`](doreco_teop1238_Gol_01_copied_legacy_tiers.eaf). While the first and third script extensively rename the new tiers, the second script does this manually. While the first and second script assume that the .eaf file only contains one set of morph and gloss tiers, the third script searches through all possibly available morph and gloss tiers.
 
 ## References
 

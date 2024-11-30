@@ -13,10 +13,10 @@ print(f"mb tier: {mb_tier.name}")
 print(f"gl tier: {gl_tier.name}")
 # Copy and add the morph tier, and rename it.
 new_mb_tier = trans.add(-1,mb_tier)
-new_mb_tier.name = "mb_tok@Gol"
+new_mb_tier.name = "mb_legacy@Gol"
 # Copy and add the gloss tier, and rename it.
 new_gl_tier = trans.add(-1,gl_tier,new_mb_tier)
-new_gl_tier.name = "gl_tok@Gol"
+new_gl_tier.name = "gl_legacy@Gol"
 # Renaming the annotation ID of all segments
 # to make sure, that every segment has a
 # unique annotation ID.
@@ -24,4 +24,4 @@ incr = 0
 for tier in trans:
     incr = tier.renameSegs("a",incr)
 # Exporting the transcription as a new .eaf file.
-toElan.toElan(trans.name + "_tok" + ".eaf",trans)
+toElan.toElan(trans.name + "_copied_legacy_tiers" + ".eaf",trans)

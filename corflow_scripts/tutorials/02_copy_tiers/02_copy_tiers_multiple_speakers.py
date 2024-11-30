@@ -10,13 +10,16 @@ for mb_tier in trans.findAllName("mb@"):
     for ch_tier in mb_tier.children():
         # Get the gloss tier.
         if ch_tier.name.startswith("gl@"):
+            # Print the names of the morph and gloss tier.
+            print(f"mb tier: {mb_tier.name}")
+            print(f"gl tier: {ch_tier.name}")
             #Copy and add the morph tier.
             new_mb_tier = trans.add(-1,mb_tier)
             # Split the name of the morph tier into three parts:
             # (1) "mb", (2) "@" and (2) the speaker "Gol".
             mb_tier_name_split = mb_tier.name.partition("@")
-            # Add the suffix "_tok" to "mb".
-            new_name = mb_tier_name_split[0] + "_tok"
+            # Add the suffix "_legacy" to "mb".
+            new_name = mb_tier_name_split[0] + "_legacy"
             # Add the remaining parts of the original name
             # and change the name of the new morph tier.
             new_mb_tier.name = new_name + mb_tier_name_split[1] + mb_tier_name_split[2]
@@ -25,8 +28,8 @@ for mb_tier in trans.findAllName("mb@"):
             # Split the name of the gloss tier into three parts:
             # (1) "gl", (2) "@" and (2) the speaker "Gol".
             gl_tier_name_split = ch_tier.name.partition("@")
-            # Add the suffix "_tok" to "gl".
-            new_name = gl_tier_name_split[0] + "_tok"
+            # Add the suffix "_legacy" to "gl".
+            new_name = gl_tier_name_split[0] + "_legacy"
             # Add the remaining parts of the original name
             # and change the name of the new gloss tier.
             new_gl_tier.name = new_name + gl_tier_name_split[1] + gl_tier_name_split[2]
@@ -37,4 +40,4 @@ incr = 0
 for tier in trans:
     incr = tier.renameSegs("a",incr)
 # Exporting the transcription as a new .eaf file.
-toElan.toElan(trans.name + "_tok" + ".eaf",trans)
+toElan.toElan(trans.name + "_copied_legacy_tiers" + ".eaf",trans)
