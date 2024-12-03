@@ -4,11 +4,11 @@ This tutorial shows how to copy and add an existing `Tier` to a `Transcription` 
 
 ## Copy and add Objects to Structures
 
-Some tasks involve changing `Segments` and `Tiers` while keeping the original ones. *Tokenization* tasks are such cases, where existing `Tiers` and `Segments` might have to be copied and added to the `Transcription` first before being changed. Take a look at the following screenshot taken of the .eaf file `doreco_teop1238_Gol_01.eaf` from *Teop* from the older DoReCo version 1.2:
+Some processing tasks involve copying `Segments` and `Tiers`, e.g. to preserve original tiers before proceeding to modify the new tiers. One such use case is *tokenization*, which will be discussed in more detail in `03_tokenize_segments`. Take a look at the tiers and segments in the file `doreco_teop1238_Gol_01.eaf` from *Teop* taken from DoReCo version 1.2:
 
 <img src="segments_to_be_tokenized_mod.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01.eaf' from Teop from DoReCo 1.2 showing an instance of problematic segments, which have to be tokenized.">
 
-The screenshot highlights two `Segments`: *a=naa* on the morph tier and *OBJM=1SG.PRON* on the gloss tier corresponding to the word *anaa*. Both segments contain two separate units: *a=naa* contains the proclitic *a=* and the root *naa* with their respective glosses being *OBJM=* and *1SG.PRON*. Each segment needs to be split into two separate segments, where each segment contains one morph or gloss.
+The screenshot highlights two `Segments`: *a=naa* on the morph tier and *OBJM=1SG.PRON* on the gloss tier, both daughters of the word *anaa*. This is a case where we would like to perform tokenization, as *a=naa* actually consists of two linguistic units: the proclitic *a=* and the root *naa*, with their respective glosses being *OBJM=* and *1SG.PRON*. Before carrying out the tokenization, we first want to create backup copies of the respective tiers.
 
 Corflow provides the `.add()` method to copy and add existing objects. In order to copy and add an existing `Tier` to a `Transcription`, we call the `.add()` method on a `Transcription` object. To copy and add a `Segment` to a `Tier`, we would call the `.add()` method on a `Tier` object.
 
@@ -42,7 +42,7 @@ mb tier: mb@Gol
 gl tier: gl@Gol
 ```
 
-Some .eaf files, those which contain multiple speakers, may also contain multiple tiers of the same type; one for each speaker. For example, the file `doreco_goem1240_c00JMquest2.eaf` from *Goemai* has two different speakers and therefore two different sets of morph and gloss tiers. The following code snipped accesses the first found morph and gloss tier as well as all found morph and gloss tiers and prints their names:
+Some .eaf files contain annotations for multiple speakers, and therefore multiple identical tier structures, one for each speaker. For example, the file `doreco_goem1240_c00JMquest2.eaf` from *Goemai* has two different speakers and therefore two different sets of morph and gloss tiers. The following code snippet shows how to access the first morph and gloss tiers and then *all* morph and gloss tiers:
 
 ```python
 # Importing the ELAN corflow modules.
@@ -75,7 +75,7 @@ first gloss tier: gl@J
 all gloss tiers: ['gl@J', 'gl@M']
 ```
 
-Accessing only the first set of tiers ignores all other sets of tiers, which may have to be processed too. Furthermore, depending on the order, in which tiers are arranged in a given transcription, two tiers belonging to different tier structures may be selected and processed by the script, which may or may not lead to undesirable side effects. To be on the safe side, one can (1) search for all morph tiers and (2) pick the corresponding gloss tier, which is the child tier of the morph tier:
+Accessing only the first set of tiers ignores all other sets of tiers, which may be problematic given the order of tiers and speakers may differ across files. To be on the safe side, one can (1) search for all morph tiers and (2) pick the corresponding gloss tier, which is the child tier of the morph tier:
 
 ```python
 # Importing the ELAN corflow modules.
@@ -93,7 +93,7 @@ for mb_tier in trans.findAllName("mb@"):
             #...
 ```
 
-In what follows, knowing that the .eaf to be processed only contains one set of morph and gloss tiers, I will continue with the previous approach accessing the morph and gloss tier independently of each other.
+In what follows, knowing our .eaf file from Teop only contains one set of morph and gloss tiers, we will continue with the previous approach accessing the morph and gloss tier independently of each other.
 
 Having accessed the morph and gloss tier, we copy and add the morph tier as a new tier to the transcription by calling the `.add()` method on the transcription. The `.add()` method has three relevant parameters:
 
@@ -117,7 +117,7 @@ After copying and adding the new morph tier, we can change its name by accessing
 new_mb_tier.name = "mb_legacy@Gol"
 ```
 
-However, in case I want to copy, add and rename multiple (morph) tiers of multiple files, I will need an automated solution instead. Hence, I (1) split the name of the original morph tier, (2) add the suffix *_legacy* at the desired position and (3) and change the name of the new morph tier. The end result will be the same.
+If we want to copy, add and rename multiple (morph) tiers across multiple files, we will need an automated solution. Here, we can (1) split the name of the original morph tier, (2) add the suffix *_legacy* at the desired position and (3) change the name of the new morph tier. The end result will be the same.
 
 ```python
 # Split the name of the morph tier into three parts:
@@ -130,7 +130,7 @@ new_name = mb_tier_name_split[0] + "_legacy"
 new_mb_tier.name = new_name + mb_tier_name_split[1] + mb_tier_name_split[2]
 ```
 
-Having copied, added and renamed the morph tier, we do the same with the gloss tier. This time however, we specify its parent tier as the newly added morph tier, since we want the gloss tier and its segments corresponding to the new morph tier and its segments:
+Having copied, added and renamed the morph tier, we do the same with the gloss tier. This time, however, we specify its parent tier as the newly added morph tier, since we want the gloss tier and its segments corresponding to the new morph tier and its segments:
 
 ```python
 # Copy and add the gloss tier.
@@ -150,7 +150,7 @@ new_name = gl_tier_name_split[0] + "_legacy"
 new_gl_tier.name = new_name + gl_tier_name_split[1] + gl_tier_name_split[2]
 ```
 
-There is one last thing to do before finally saving and exporting the transcription as a new .eaf file: When copying and adding a new tier, each segment of the original tier gets copied and added to the new tier as well. These new segments share the same attribute values as the original segments including the internal annotation ID each segment has. This annotation ID must be unique for each segment. If it isn't, the resulting .eaf file is corrupted and for example cannot be opened in ELAN. To prevent this from happening, all segments of all tiers have to be renamed. The particular annotation ID is not important as long as it is unique and does not appear more than once in the file. By convention, the annotation ID of a segment consists of the letter *a* followed by a unique number.
+There is one last step before saving and exporting the transcription as a new .eaf file: When copying and adding a new tier, each segment of the original tier gets copied and added to the new tier as well. These new segments share the same attribute values as the original segments, including the internal annotation ID of each segment. Annotation ID's must be unique for each segment across an .eaf file, however; if they are not, the resulting .eaf file is corrupted and cannot be opened in ELAN. To prevent this from happening, all ID's on all tiers have to be renamed. The particular annotation ID is not important as long as it is unique per file. By convention, the annotation ID of a segment consists of the letter *a* followed by a unique number.
 
 ```python
 # Renaming the annotation ID of all segments
