@@ -168,9 +168,11 @@ Finally, the transcription is saved and exported as the new .eaf file `doreco_te
 toElan.toElan(trans.name + "_copied_legacy_tiers" + ".eaf",trans)
 ```
 
-The structure of the new file:
+The structure of the new file is as follows:
 
 <img src="copied_and_added_tiers_02.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_copied_legacy_tiers.eaf' from Teop showing the copied and added morph and gloss tiers alongside the original tiers.">
+
+Having successfully created backup copies of the tiers we want to modify, the next chapter of the tutorial `03_tokenize_segments` explains how to carry tokenize segments based on custom criteria.
 
 ## Scripts
 
