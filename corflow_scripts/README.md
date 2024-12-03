@@ -22,7 +22,7 @@ Here are short scripts that illustrate some base functionalities of Corflow, and
 2. Copy tiers: How to create copies of tiers as either stand-alone tiers or as daughter tiers
 3. Substitute content: How to search and replace (sub)strings on designated tiers based on regular expressions
 4. Delete and create segments: How to delete and create annotation units based on a set of conditions
-5. ...
+5. Import info from csv files
 
 ## Sanity checks
 
