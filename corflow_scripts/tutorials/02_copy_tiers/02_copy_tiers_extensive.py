@@ -1,9 +1,12 @@
 # Importing the ELAN corflow modules.
 from corflow import fromElan,toElan
 # Path to .eaf file.
+import os
 eaf = "doreco_teop1238_Gol_01.eaf"
+current_directory = os.path.dirname(os.path.abspath(__file__))
+eaf_path = os.path.join(current_directory, eaf)
 # Creating a transcription object (importing the .eaf file).
-trans = fromElan.fromElan(eaf,encoding="utf-8")
+trans = fromElan.fromElan(eaf_path,encoding="utf-8")
 # Get the morph tier.
 mb_tier = trans.findName("mb@")
 # Get the gloss tier.
