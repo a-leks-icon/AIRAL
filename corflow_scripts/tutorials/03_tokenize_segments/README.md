@@ -12,7 +12,7 @@ The screenshot taken of the .eaf file `doreco_teop1238_Gol_01_copied_legacy_tier
 
 <img src="starting_point_mod.png" width="600" alt="Screenshot of the file 'doreco_teop1238_Gol_01_copied_legacy_tiers.eaf' from Teop from DoReCo 1.2 showing one instance of problematic segments, which have to be tokenized.">
 
-Both segments contain two separate units: *a=naa* contains the proclitic *a=* and the root *naa* with their respective glosses being *OBJM=* and *1SG.PRON*. Each segment has to be split into two separate segments (highlighted by green and red rectangles), such that each morph and gloss constitutes its own segment. But what does *splitting* a segment mean in particular? The next section [*Excursus: Concept behind Splitting a Segment*](#excursus-concept-behind-splitting-a-segment) answers this question. The section [*Splitting a Segment*](#splitting-a-segment) right after the next one instead explains how to use the `split_seg()` function located in the [`general_functions.py`](../../general_functions.py) script in order to split a segment.
+Both segments contain two separate units: *a=naa* contains the proclitic *a=* and the root *naa* with their respective glosses being *OBJM=* and *1SG.PRON*. Each segment has to be split into two separate segments (highlighted by green and red rectangles), such that each morph and gloss constitutes its own segment. But what does *splitting* a segment mean in particular? The next section [*Excursus: Concept behind Splitting a Segment*](#excursus-concept-behind-splitting-a-segment) answers this question. The section [*Splitting a Segment*](#splitting-a-segment) right after the next one explains how to use the `split_seg()` function located in the [`general_functions.py`](../../general_functions.py) script in order to split a segment.
 
 ## Excursus: Concept behind Splitting a Segment
 
@@ -24,18 +24,9 @@ Next, there are two approaches for how to (3) adjust the time of the old and new
 
 <!--Take a look at the previous screenshot and consider the hierarchy of the tiers, whose segments we want to split there: The morph tier is a child tier of the word tier and the parent tier of the (1) gloss, (2) phone and (3) special *doreoco-mb-algn@* tier. When we add a new segment on the morph tier and one on the gloss tier, we want the new segment on the morph tier to be a child segment of the word segment *anaa* and at the same time be a parent segment of the new segment on the gloss tier. In other words, we have to consider-->
 
-When splitting a segment and thereby adding a new segment, its (4) parent and child segments have to be defined. One way of doing this would be to simply use the old segment's parent and child segments as the new segment's parent and child segments. However, this would only work in part: In ELAN (and generally in linguistic structures), while a parent segment can have multiple child segments (on the same and/or different tiers), a child segment can only have one parent segment. Additionally, when a new segment is added, the time of the old and new segment is changed.
+When splitting a segment and thereby adding a new segment, the new segment's (4) parent and child segments have to be defined. One way of doing this would be to simply use the old segment's parent and child segments as the new segment's parent and child segments. However, this would only work in part: In ELAN (and generally in linguistic structures), while a parent segment can have multiple child segments (on the same and/or different tiers), a child segment can only have one parent segment. Thus, the new and old segment can share their parent segment but not their child segments. Another thing to consider is, that when a new segment is added, a part of the time of the old segment will be assigned to the new segment. As a consequence, the time of the old segment and that of its children will not align with each other anymore. Therefore, the solution is to a) have the old and new segment share their parent segment and b) to distribute the old segment's child segments based on their *time* to either the old or new segment.
 
-*to be continued*
-
-<!--In theory, there may be scenarios, where definiens and definiendum are reversed: the time of a segment is defined based on its relation to its parent
-
-
-
-
-
- the parent and child segments of the new segment will be located based on the time of the new segment.
-
-As it is, when splitting a segment, the times of the old and new segment will not go beyond the original time of the old segment (and the old segment's parent). That is why, (4) the parent segment of the old segment will also be the parent of the new segment. In our example, the word *anaa* will be the parent segment of the left segment *a=* and the new, right segment *naa*. However, ....: -->
+Finally, when splitting a segment and adding a new segment on one tier (here: the morph tier), which has a child tier (here: the gloss tier), the corresponding (time-aligned) segment on the child tier has to be split too and (5) and a new segment has to be added. Otherwise, the new segment on the parent (morph) tier will have no corresponding (time-aligned) segment on the child (gloss) tier. And while it might seem that the child segment has the old and new segment as its parent segments, a segment cannot have more than one parent segment.
 
 ## Splitting a Segment
+
