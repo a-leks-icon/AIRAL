@@ -284,73 +284,62 @@ def get_segs(trans:Transcription,tier_re:str,*conditions,**options) -> dict:
 
     return get_tier_segs
 
-def copy_tier(tier_to_copy:Tier,new_tier_name:str,parent_tier:Tier=None,trans:Transcription=None,index:int=-1) -> Tier:
-    '''Copies an existing tier and its segments to a transcription.
+def split_seg(seg,time=None,old_seg_content:str|list=None,new_seg_content:str|list=None,add_recursively:bool=False):
+    '''Splits a segment into two segments.
 
-    Copies an existing tier **tier_to_copy** and its segments to a transcription **trans** at position **index** with its new name **new_tier_name** and **parent_tier**. By default, **parent_tier** equals None, meaning that the new tier is a root tier. By default, **trans** is an empty string, meaning that the new tier gets added to the transcription of the **tier_to_copy**. By default, **index** is a negative integer, meaning that the new tier is added at the last position of **trans**.
+    Splits a segment **seg** into two segments by adding a new segment to the right of **seg** at **time**. Splits child segments of **seg** too, if necessary. Defines the content (annotation value) of the affected, splitted segments by **old_seg_content** and the content of the newly added segments by **new_seg_content**. If **time** equals None (the default), **seg* is split evenly.
 
     Args:
-        tier_to_copy: The `Tier` object to be copied.
-        new_tier_name: Name (string) of the new tier.
-        parent_tier: The `Tier` object, which is the parent tier of the new tier. Equals by default None, meaning that the new tier is a root tier.
-        trans: The `Transcription` object, to which the new tier gets added. Equals by default None, meaning that new tier gets added to the transcription of **tier_to_copy**.
-        index: An integer identifying the position at which the new tier gets added to **trans**. Is by default a negative integer, meaning that the new tier is added at the last position of the transcription **trans**.
+        seg: `Segment` object to be split.
+        time: Time at which **seg** has to be split. By default, it equals None and splits **seg** such that **seg** and the newly added segment share the total time of **seg**.
+        old_seg_content: Either a string defining the content of the splitted segment, if only one segment is affected, or a list containing strings defining the contents of all splitted segments in the order in which they were affected.
+        new_seg_content: Either a string defining the content of the newly added segment, if only one segment is newly added, or a list containing strings defining the contents of all new segments in the order in which they were added.
 
     Returns:
-        The new, copied `Tier` object.
+        List containing all newly added segments.
     '''
-    if not isinstance(tier_to_copy,Tier):
-        raise TypeError("'tier_to_copy' is not a Tier object.")
-    trns = trans
-    if not trns:
-        trns = tier_to_copy.struct
 
-
-
-    '''
-    def add(self,index=-1,elem=None,parent=None,struct=None,det=False):
-        """Adds (copies) a pre-existing object to 'struct.elem'."""
-        if not elem:
-            return self._retEmpty(det)
-        struct = self._fixStruct(struct); index = self._fixIndex(index)
-        nel = self._copy(struct,index,elem,parent,False,det)
-        return self._retDet(nel,det)
-        # set functions
-
-    def _copy(self,struct,index,elem,parent,ch_child,det):
-        """Copies an already existing element 'elem' to 'struct'."""
-        struct.elem.insert(index,elem.copy(struct))         # copy
-        struct.d_elem[struct.elem[index]] = [index,parent]  # parent
-        if ch_child:                                        # children
-            l_struct = elem.struct.d_elem[elem][2:]
-            struct.d_elem[elem] += l_struct.copy()
-        self._fixIndexes(struct,index+1,len(struct.elem))   # indexes
-        return self._retDet(struct.elem[index],det)
-
-    def _retEmpty(self,det=False):
-        """Technical function to return a not-found case."""
-        if det:
-            return ("",-1,None)
+    new_segs = []
+    old_segs = [seg]
+    if seg.children():
+        for child_segs in seg.childDict().values():
+            if add_recursively:
+                pass
+            elif len(child_segs) == 1:
+                old_segs.append(child_segs[0])
+    for i,old_seg in enumerate(old_segs):
+        ind = old_seg.index()
+        tier = old_seg.struct
+        new_seg = tier.add(ind+1,old_seg)
+        if time:
+            new_seg.start = time
+            new_seg.end = old_seg.end
+            old_seg.end = time
         else:
-            return None
-
-    def _fixStruct(self,struct):
-        if not struct:
-            struct = self
-        return struct
-    '''
-
-
-'''
-def copy_tier(transcription,tier,new_tier_name,parent_tier,char_num=1):
-
-    transcription.add(-1,tier)
-    new_tier = transcription.elem[-1]
-    new_tier.name = new_tier_name
-    for seg in new_tier:
-        seg.name = chr(ord(seg.name[0])+char_num) + seg.name[1:]
-    new_tier.setParent(parent_tier)
-    for seg in new_tier:
-        seg.setParent(parent_tier.getTime(seg.start))
-    return new_tier
-'''
+            duration = old_seg.end-old_seg.start
+            old_seg.end = old_seg.start + duration/2
+            new_seg.start = old_seg.end
+        if old_seg_content:
+            if isinstance(old_seg_content,list):
+                if i >= len(old_seg_content):
+                    old_seg.content = ""
+                else:
+                    old_seg.content = old_seg_content[i]
+            else:
+                old_seg.content = old_seg_content
+        else:
+            old_seg.content = ""
+        if new_seg_content:
+            if isinstance(new_seg_content,list):
+                if i >= len(new_seg_content):
+                    new_seg.content = ""
+                else:
+                    new_seg.content = new_seg_content[i]
+            else:
+                new_seg.content = new_seg_content
+        else:
+            new_seg.content = ""
+        par_seg = new_seg.struct.parent().getTime(new_seg.start)
+        new_seg.setParent(par_seg)
+        new_segs.append(new_seg)
+    return new_segs
